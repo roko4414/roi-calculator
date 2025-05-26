@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI Calculator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <style>
+    /* Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      color: white;
+      background-color: transparent;
+    }
+
+    /* Container */
+    .calculator-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Grid Layout */
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    
+    }
+
+    @media (min-width: 992px) {
+      .calculator-grid {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+
+    /* Panels */
+    .panel {
+      background-color: rgba(26, 26, 26, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(42, 42, 42, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Tool Selection */
+    .tool-selection {
+      margin-bottom: 24px;
+    }
+
+    .tool-selection h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 640px) {
+      .tools-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .tools-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .tool-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+    }
+
+    .tool-item:hover {
+      background-color: rgba(42, 42, 42, 0.1);
+    }
+
+    .tool-checkbox {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tool-checkbox.checked {
+      border-color: #7DFF00;
+      background-color: #7DFF00;
+      color: black;
+    }
+
+    .tool-checkbox.checked::after {
+      content: "✓";
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .tool-name {
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+
+    .tool-item.selected .tool-name {
+      opacity: 1;
+    }
+
+    /* Slider Groups */
+    .slider-group {
+      margin-bottom: 32px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .slider-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .slider-value {
+      background-color: #7DFF00;
+      color: black;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 6px;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slider-label {
+      font-size: 14px;
+      opacity: 0.7;
+      min-width: 40px;
+    }
+
+    .slider {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 8px;
+      background: rgba(42, 42, 42, 0.2);
+      border-radius: 4px;
+      outline: none;
+    }
+
+    /* Fix for the slider thumb and track */
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #7DFF00;
+      cursor: pointer;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #7DFF00;
+      cursor: pointer;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Fix for the slider progress track */
+    .slider-progress {
+      position: relative;
+      flex: 1;
+    }
+
+    .slider-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(42, 42, 42, 0.2);
+      border-radius: 4px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .slider-fill {
+      height: 8px;
+      background: #7DFF00;
+      border-radius: 4px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .slider-input {
+      position: relative;
+      width: 100%;
+      margin: 0;
+      z-index: 2;
+      background: transparent;
+    }
+
+    /* Summary Panel */
+    .summary-panel {
+      background-color: rgba(26, 26, 26, 0.9);
+      border: 1px solid rgba(42, 42, 42, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 40px;
+    }
+
+    .summary-panel h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .summary-panel p {
+      font-size: 18px;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+
+    .summary-highlight {
+      color: #7DFF00;
+      font-weight: 700;
+    }
+
+    /* Alert Panels */
+    .alert-panel {
+      background-color: rgba(26, 26, 26, 0.9);
+      border: 1px solid rgba(255, 165, 0, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .alert-header {
+      display: flex;
+      align-items: center;
+      color: orange;
+      margin-bottom: 8px;
+    }
+
+    .alert-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .alert-message {
+      opacity: 0.9;
+      margin-bottom: 16px;
+    }
+
+    /* Results Panels */
+    .results-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .result-panel {
+      background-color: rgba(26, 26, 26, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(42, 42, 42, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .result-panel h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .result-large {
+      font-size: 48px;
+      font-weight: 700;
+      color: #7DFF00;
+      margin-bottom: 16px;
+    }
+
+    .result-subtitle {
+      font-size: 16px;
+      opacity: 0.7;
+    }
+
+    .result-medium {
+      font-size: 36px;
+      font-weight: 700;
+      color: #7DFF00;
+      margin-bottom: 8px;
+    }
+
+    .result-large-white {
+      font-size: 40px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    /* Progress Bars */
+    .progress-item {
+      margin-bottom: 16px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .progress-label {
+      opacity: 0.7;
+    }
+
+    .progress-value {
+      color: white;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background-color: rgba(42, 42, 42, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background-color: #7DFF00;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    /* Custom background with blob effects */
+    .ghl-custom-bg {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .ghl-custom-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 50% 50%, rgba(125, 255, 0, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+      z-index: -1;
+    }
+
+    .ghl-top-left-blob {
+      position: absolute;
+      top: -500px;
+      left: -300px;
+      width: 800px;
+      height: 800px;
+      background-color: rgba(125, 255, 0, 0.05);
+      border-radius: 100%;
+      filter: blur(60px);
+      z-index: -2;
+    }
+
+    .ghl-bottom-right-blob {
+      position: absolute;
+      bottom: -400px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background-color: rgba(125, 255, 0, 0.05);
+      border-radius: 100%;
+      filter: blur(60px);
+      z-index: -2;
+    }
+    
+    /* Fix for the results alert panel stretching */
+    #resultsAlertPanel {
+      height: fit-content;
+      align-self: flex-start;
+    }
+  </style>
+</head>
+<body>
+<div class="ghl-custom-bg">
+  <div class="ghl-top-left-blob"></div>
+  <div class="ghl-bottom-right-blob"></div>
+  
+  <div class="calculator-container">
+    <div class="calculator-grid">
+      <!-- Left Column - Calculator Inputs -->
+      <div class="panel">
+        <!-- Tool Selection -->
+        <div class="tool-selection">
+          <h2>What tools are you currently using?</h2>
+          <div class="tools-grid" id="toolsGrid">
+            <!-- Tools will be dynamically inserted here -->
+          </div>
+        </div>
+
+        <!-- Team Size Slider -->
+        <div class="slider-group">
+          <div class="slider-header">
+            <h2 class="slider-title">How many team members?</h2>
+            <span class="slider-value" id="teamSizeValue">5</span>
+          </div>
+          <div class="slider-container">
+            <span class="slider-label">1</span>
+            <div class="slider-progress">
+              <div class="slider-bg"></div>
+              <div class="slider-fill" id="teamSizeFill" style="width: 4%"></div>
+              <input type="range" min="1" max="100" value="5" class="slider slider-input" id="teamSizeSlider">
+            </div>
+            <span class="slider-label">100</span>
+          </div>
+        </div>
+
+        <!-- Manual Tasks Hours Slider -->
+        <div class="slider-group">
+          <div class="slider-header">
+            <h2 class="slider-title">Hours spent on manual tasks per week?</h2>
+            <span class="slider-value" id="manualTasksValue">10 hrs</span>
+          </div>
+          <div class="slider-container">
+            <span class="slider-label">1hr</span>
+            <div class="slider-progress">
+              <div class="slider-bg"></div>
+              <div class="slider-fill" id="manualTasksFill" style="width: 23%"></div>
+              <input type="range" min="1" max="40" value="10" class="slider slider-input" id="manualTasksSlider">
+            </div>
+            <span class="slider-label">40hrs</span>
+          </div>
+        </div>
+
+        <!-- Hourly Rate Slider -->
+        <div class="slider-group">
+          <div class="slider-header">
+            <h2 class="slider-title">Average hourly rate of your team?</h2>
+            <span class="slider-value" id="hourlyRateValue">$25</span>
+          </div>
+          <div class="slider-container">
+            <span class="slider-label">$10</span>
+            <div class="slider-progress">
+              <div class="slider-bg"></div>
+              <div class="slider-fill" id="hourlyRateFill" style="width: 7.9%"></div>
+              <input type="range" min="10" max="200" value="25" step="5" class="slider slider-input" id="hourlyRateSlider">
+            </div>
+            <span class="slider-label">$200</span>
+          </div>
+        </div>
+
+        <!-- Summary Section - Initially Hidden -->
+        <div class="summary-panel" id="summaryPanel" style="display: none;">
+          <h2><span style="margin-right: 8px;">🧠</span> Summary:</h2>
+          <div class="summary-content">
+            <p>You're wasting <span class="summary-highlight" id="summaryHours">10</span> hours/week per team member</p>
+            <p>That's over <span class="summary-highlight" id="summaryYearlyHours">2,600</span> hours/year</p>
+            <p>At <span class="summary-highlight" id="summaryRate">$25</span>/hr, this costs you <span class="summary-highlight" id="summaryCost">$65,000</span>/year</p>
+          </div>
+        </div>
+
+        <!-- Alert Panel - Initially Visible -->
+        <div class="alert-panel" id="alertPanel">
+          <div class="alert-header">
+            <span style="width: 20px; height: 20px">⚠️</span>
+            <h2 class="alert-title">No tools selected</h2>
+          </div>
+          <p class="alert-message">
+            Please select at least one tool you're currently using to see your yearly losses.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column - Results -->
+      <div class="results-container" id="resultsContainer" style="display: none;">
+        <!-- Yearly Loss Panel -->
+        <div class="result-panel">
+          <h2>Estimated Yearly Loss</h2>
+          <div class="result-large" id="yearlyLossValue">$70,000</div>
+          <p class="result-subtitle">
+            This is what your current setup is costing you. We can fix it.
+          </p>
+        </div>
+
+        <!-- Potential Savings Panel -->
+        <div class="result-panel">
+          <h2>Potential Savings</h2>
+          <div class="result-medium">You could save up to</div>
+          <div class="result-large-white" id="savingsValue">$34,300</div>
+          <p class="result-subtitle">
+            with your own custom solution
+          </p>
+        </div>
+
+        <!-- Cost Breakdown Panel -->
+        <div class="result-panel">
+          <h2>Cost Breakdown</h2>
+          <div class="progress-item">
+            <div class="progress-header">
+              <span class="progress-label">Tools</span>
+              <span class="progress-value" id="toolsCostValue">$5,000</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="toolsProgressBar" style="width: 10%;"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-header">
+              <span class="progress-label">Manual Processes</span>
+              <span class="progress-value" id="timeCostValue">$65,000</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="timeProgressBar" style="width: 90%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alert for Results Column - Initially Visible -->
+      <div class="alert-panel" id="resultsAlertPanel">
+        <div class="alert-header">
+          <span style="width: 20px; height: 20px">⚠️</span>
+          <h2 class="alert-title">Calculation Needed</h2>
+        </div>
+        <p class="alert-message">
+          ⚠️ Please select at least one tool you're currently using to see your yearly losses.
+        </p>
+        <p style="opacity: 0.7;">
+          Once you select tools, we'll show you the estimated cost and breakdown.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Tools data
+    const tools = [
+      {
+        name: 'Airtable',
+        checked: false,
+        monthlyCost: 45  // Enterprise Plan
+      },
+      {
+        name: 'Asana',
+        checked: false,
+        monthlyCost: 30  // Business Plan
+      },
+      {
+        name: 'Microsoft 365',
+        checked: false,
+        monthlyCost: 38  // E3 Enterprise
+      },
+      {
+        name: 'Monday',
+        checked: false,
+        monthlyCost: 32  // Enterprise Plan
+      },
+      {
+        name: 'Notion',
+        checked: false,
+        monthlyCost: 25  // Enterprise Plan
+      },
+      {
+        name: 'Power Apps',
+        checked: false,
+        monthlyCost: 40  // Per App Plan
+      },
+      {
+        name: 'Power BI',
+        checked: false,
+        monthlyCost: 33.20  // Premium Per User
+      },
+      {
+        name: 'Salesforce',
+        checked: false,
+        monthlyCost: 165  // Enterprise Edition
+      },
+      {
+        name: 'Smartsheet',
+        checked: false,
+        monthlyCost: 45  // Enterprise Plan
+      },
+      {
+        name: 'Workday',
+        checked: false,
+        monthlyCost: 150  // Enterprise pricing
+      },
+      {
+        name: 'Trello',
+        checked: false,
+        monthlyCost: 17.50  // Enterprise Plan
+      },
+      {
+        name: 'Spreadsheets',
+        checked: false,
+        monthlyCost: 18  // Google Workspace Business Plus
+      }
+    ];
+
+    // Variables for calculations
+    let teamSize = 5;
+    let manualTasksHours = 10;
+    let hourlyRate = 25;
+    let yearlyLoss = 0;
+    let toolsCost = 0;
+    let timeCost = 0;
+    let totalYearlyHours = 0;
+    let hasSelectedTools = false;
+    let potentialSavings = 0;
+
+    // Elements
+    const toolsGrid = document.getElementById('toolsGrid');
+    const teamSizeSlider = document.getElementById('teamSizeSlider');
+    const teamSizeValue = document.getElementById('teamSizeValue');
+    const teamSizeFill = document.getElementById('teamSizeFill');
+    const manualTasksSlider = document.getElementById('manualTasksSlider');
+    const manualTasksValue = document.getElementById('manualTasksValue');
+    const manualTasksFill = document.getElementById('manualTasksFill');
+    const hourlyRateSlider = document.getElementById('hourlyRateSlider');
+    const hourlyRateValue = document.getElementById('hourlyRateValue');
+    const hourlyRateFill = document.getElementById('hourlyRateFill');
+    const summaryPanel = document.getElementById('summaryPanel');
+    const alertPanel = document.getElementById('alertPanel');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const resultsAlertPanel = document.getElementById('resultsAlertPanel');
+    const yearlyLossValue = document.getElementById('yearlyLossValue');
+    const savingsValue = document.getElementById('savingsValue');
+    const toolsCostValue = document.getElementById('toolsCostValue');
+    const timeCostValue = document.getElementById('timeCostValue');
+    const toolsProgressBar = document.getElementById('toolsProgressBar');
+    const timeProgressBar = document.getElementById('timeProgressBar');
+    const summaryHours = document.getElementById('summaryHours');
+    const summaryYearlyHours = document.getElementById('summaryYearlyHours');
+    const summaryRate = document.getElementById('summaryRate');
+    const summaryCost = document.getElementById('summaryCost');
+
+    // Initialize tools grid
+    function initializeTools() {
+      toolsGrid.innerHTML = '';
+      tools.forEach((tool, index) => {
+        const toolItem = document.createElement('div');
+        toolItem.className = `tool-item ${tool.checked ? 'selected' : ''}`;
+        toolItem.innerHTML = `
+          <div class="tool-checkbox ${tool.checked ? 'checked' : ''}"></div>
+          <span class="tool-name">${tool.name}</span>
+        `;
+        toolItem.addEventListener('click', () => toggleTool(index));
+        toolsGrid.appendChild(toolItem);
+      });
+    }
+
+    // Toggle tool selection
+    function toggleTool(index) {
+      tools[index].checked = !tools[index].checked;
+      initializeTools();
+      calculateResults();
+    }
+
+    // Format currency
+    function formatCurrency(amount) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+      }).format(amount);
+    }
+
+    // Format number
+    function formatNumber(num) {
+      return new Intl.NumberFormat('en-US').format(Math.round(num));
+    }
+
+    // Update slider fill
+    function updateSliderFill(slider, fill, min, max) {
+      const value = parseInt(slider.value);
+      const percentage = ((value - min) / (max - min)) * 100;
+      fill.style.width = percentage + '%';
+    }
+
+    // Calculate results
+    function calculateResults() {
+      hasSelectedTools = tools.some(tool => tool.checked);
+
+      if (hasSelectedTools) {
+        summaryPanel.style.display = 'block';
+        alertPanel.style.display = 'none';
+        resultsContainer.style.display = 'flex';
+        resultsAlertPanel.style.display = 'none';
+
+        let toolsMonthlyTotal = 0;
+        tools.forEach(tool => {
+          if (tool.checked) {
+            toolsMonthlyTotal += tool.monthlyCost;
+          }
+        });
+
+        const totalMonthlyToolCost = toolsMonthlyTotal * teamSize;
+        const annualToolCost = totalMonthlyToolCost * 12;
+        toolsCost = Math.round(annualToolCost);
+
+        const weeklyTimeCost = manualTasksHours * hourlyRate * teamSize;
+        const annualTimeCost = weeklyTimeCost * 52;
+        timeCost = Math.round(annualTimeCost);
+
+        yearlyLoss = toolsCost + timeCost;
+        
+        const savingsPercentage = 0.49; // 49% savings
+        potentialSavings = Math.round(yearlyLoss * savingsPercentage);
+        
+        const weeklyHours = manualTasksHours * teamSize;
+        totalYearlyHours = weeklyHours * 52;
+
+        // Update UI with results
+        yearlyLossValue.textContent = formatCurrency(yearlyLoss);
+        savingsValue.textContent = formatCurrency(potentialSavings);
+        toolsCostValue.textContent = formatCurrency(toolsCost);
+        timeCostValue.textContent = formatCurrency(timeCost);
+        
+        // Update progress bars
+        const toolsPercentage = (toolsCost / yearlyLoss * 100) + '%';
+        const timePercentage = (timeCost / yearlyLoss * 100) + '%';
+        toolsProgressBar.style.width = toolsPercentage;
+        timeProgressBar.style.width = timePercentage;
+        
+        // Update summary
+        summaryHours.textContent = manualTasksHours;
+        summaryYearlyHours.textContent = formatNumber(totalYearlyHours);
+        summaryRate.textContent = '$' + hourlyRate;
+        summaryCost.textContent = formatCurrency(timeCost);
+      } else {
+        summaryPanel.style.display = 'none';
+        alertPanel.style.display = 'block';
+        resultsContainer.style.display = 'none';
+        resultsAlertPanel.style.display = 'block';
+      }
+    }
+
+    // Event listeners for sliders
+    teamSizeSlider.addEventListener('input', function() {
+      teamSize = parseInt(this.value);
+      teamSizeValue.textContent = teamSize;
+      updateSliderFill(teamSizeSlider, teamSizeFill, 1, 100);
+      calculateResults();
+    });
+
+    manualTasksSlider.addEventListener('input', function() {
+      manualTasksHours = parseInt(this.value);
+      manualTasksValue.textContent = manualTasksHours + ' hrs';
+      updateSliderFill(manualTasksSlider, manualTasksFill, 1, 40);
+      calculateResults();
+    });
+
+    hourlyRateSlider.addEventListener('input', function() {
+      hourlyRate = parseInt(this.value);
+      hourlyRateValue.textContent = '$' + hourlyRate;
+      updateSliderFill(hourlyRateSlider, hourlyRateFill, 10, 200);
+      calculateResults();
+    });
+
+    // Initialize
+    initializeTools();
+    updateSliderFill(teamSizeSlider, teamSizeFill, 1, 100);
+    updateSliderFill(manualTasksSlider, manualTasksFill, 1, 40);
+    updateSliderFill(hourlyRateSlider, hourlyRateFill, 10, 200);
+    calculateResults();
+  });
+</script>
+</body>
+</html>
