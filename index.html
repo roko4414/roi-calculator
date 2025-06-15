@@ -571,6 +571,9 @@
 
 <script>
   // Dynamic height communication with parent iframe
+  let lastSentHeight = 0;
+  let heightUpdateTimeout = null;
+  
   function updateHeight() {
     try {
       const height = Math.max(
@@ -580,6 +583,14 @@
         document.documentElement.scrollHeight,
         document.documentElement.offsetHeight
       );
+      
+      // Only send if height changed significantly (more than 10px difference)
+      const heightDifference = Math.abs(height - lastSentHeight);
+      if (heightDifference < 10) {
+        return; // Don't send if change is too small
+      }
+      
+      lastSentHeight = height;
       
       // Send height to parent GoHighLevel page
       window.parent.postMessage({
@@ -598,9 +609,15 @@
     }
   }
 
-  // Call updateHeight with a small delay to ensure DOM is fully rendered
+  // Throttled version - prevents rapid fire updates
   function updateHeightDelayed() {
-    setTimeout(updateHeight, 100);
+    // Clear any pending timeout
+    if (heightUpdateTimeout) {
+      clearTimeout(heightUpdateTimeout);
+    }
+    
+    // Set new timeout
+    heightUpdateTimeout = setTimeout(updateHeight, 150);
   }
 
   document.addEventListener('DOMContentLoaded', function() {
