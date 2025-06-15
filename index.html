@@ -570,6 +570,39 @@
 </div>
 
 <script>
+  // Dynamic height communication with parent iframe
+  function updateHeight() {
+    try {
+      const height = Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+      );
+      
+      // Send height to parent GoHighLevel page
+      window.parent.postMessage({
+        type: 'resize',
+        height: height
+      }, 'https://go.apgsoftware.com');
+      
+      // Also send to any parent domain (fallback)
+      window.parent.postMessage({
+        type: 'resize',
+        height: height
+      }, '*');
+    } catch (error) {
+      // Fail silently if postMessage is not available
+      console.log('PostMessage not available:', error);
+    }
+  }
+
+  // Call updateHeight with a small delay to ensure DOM is fully rendered
+  function updateHeightDelayed() {
+    setTimeout(updateHeight, 100);
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     // Tools data
     const tools = [
@@ -685,6 +718,7 @@
         toolItem.addEventListener('click', () => toggleTool(index));
         toolsGrid.appendChild(toolItem);
       });
+      updateHeightDelayed(); // Update height after tools are rendered
     }
 
     // Toggle tool selection
@@ -771,6 +805,9 @@
         resultsContainer.style.display = 'none';
         resultsAlertPanel.style.display = 'block';
       }
+      
+      // Update height after calculations and UI changes
+      updateHeightDelayed();
     }
 
     // Event listeners for sliders
@@ -801,6 +838,22 @@
     updateSliderFill(manualTasksSlider, manualTasksFill, 1, 40);
     updateSliderFill(hourlyRateSlider, hourlyRateFill, 10, 200);
     calculateResults();
+    
+    // Initial height update
+    updateHeightDelayed();
+  });
+
+  // Additional event listeners for height updates
+  window.addEventListener('resize', updateHeightDelayed);
+  window.addEventListener('load', updateHeightDelayed);
+  
+  // Update height on any dynamic content changes
+  const observer = new MutationObserver(updateHeightDelayed);
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['style', 'class']
   });
 </script>
 </body>
