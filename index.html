@@ -1933,13 +1933,8 @@ let heightUpdateTimeout = null;
 
 function updateHeight() {
   try {
-    const height = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
+    const container = document.querySelector('.calculator-container');
+    const height = container ? container.offsetHeight + 48 : document.body.scrollHeight;
 
     if (Math.abs(height - lastSentHeight) < 10) return;
 
