@@ -11,26 +11,25 @@
       margin: 0;
       padding: 0;
       font-family: 'Inter', sans-serif;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
     }
 
-    /* Hide scrollbar for all browsers */
+    *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
     html, body {
-      overflow: hidden;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE/Edge */
-    }
-
-    html::-webkit-scrollbar,
-    body::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
-      width: 0;
-      height: 0;
+      overflow: hidden !important;
+      overflow-x: hidden !important;
+      overflow-y: hidden !important;
     }
 
     body {
       color: white;
       background-color: #0a0a0a;
-      min-height: 100vh;
     }
 
     /* Container */
@@ -1965,11 +1964,20 @@ function updateHeight() {
 
 function updateHeightDelayed() {
   if (heightUpdateTimeout) clearTimeout(heightUpdateTimeout);
-  heightUpdateTimeout = setTimeout(updateHeight, 150);
+  heightUpdateTimeout = setTimeout(updateHeight, 100);
 }
 
+// Send height immediately and after short delays to catch initial render
+updateHeight();
+setTimeout(updateHeight, 50);
+setTimeout(updateHeight, 200);
+setTimeout(updateHeight, 500);
+
 window.addEventListener('resize', updateHeightDelayed);
-window.addEventListener('load', updateHeightDelayed);
+window.addEventListener('load', function() {
+  updateHeight();
+  setTimeout(updateHeight, 100);
+});
 
 const observer = new MutationObserver(updateHeightDelayed);
 observer.observe(document.body, {
