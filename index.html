@@ -2919,7 +2919,13 @@ let heightUpdateTimeout = null;
 function updateHeight() {
   try {
     const container = document.querySelector('.calculator-container');
-    const height = container ? container.offsetHeight + 48 : document.body.scrollHeight;
+    // Use scrollHeight to get full content height, even when overflow is hidden
+    const containerHeight = container ? Math.max(container.offsetHeight, container.scrollHeight) : 0;
+    const bodyHeight = Math.max(document.body.offsetHeight, document.body.scrollHeight);
+    const docHeight = Math.max(document.documentElement.offsetHeight, document.documentElement.scrollHeight);
+
+    // Take the maximum of all measurements + padding
+    const height = Math.max(containerHeight, bodyHeight, docHeight) + 48;
 
     if (Math.abs(height - lastSentHeight) < 10) return;
 
