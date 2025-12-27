@@ -11,25 +11,12 @@
       margin: 0;
       padding: 0;
       font-family: 'Inter', sans-serif;
-      scrollbar-width: none !important;
-      -ms-overflow-style: none !important;
-    }
-
-    *::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
-    }
-
-    html, body {
-      overflow: hidden !important;
-      overflow-x: hidden !important;
-      overflow-y: hidden !important;
     }
 
     body {
       color: white;
       background-color: #0a0a0a;
+      min-height: 100vh;
     }
 
     /* Container */
@@ -221,196 +208,6 @@
 
     .category-section.expanded .category-tools {
       display: block;
-    }
-
-    /* Category Selection Grid (Phase 1) */
-    .category-checkbox-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .category-checkbox-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .category-checkbox-item:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.15);
-    }
-
-    .category-checkbox-item.checked {
-      background: rgba(125, 255, 0, 0.08);
-      border-color: #7DFF00;
-    }
-
-    .category-checkbox-item .checkbox {
-      width: 22px;
-      height: 22px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.2s ease;
-    }
-
-    .category-checkbox-item.checked .checkbox {
-      background: #7DFF00;
-      border-color: #7DFF00;
-    }
-
-    .category-checkbox-item .checkbox svg {
-      width: 14px;
-      height: 14px;
-      stroke: #0a0a0a;
-      stroke-width: 3;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .category-checkbox-item.checked .checkbox svg {
-      opacity: 1;
-    }
-
-    .category-checkbox-item .category-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1;
-    }
-
-    .category-checkbox-item .category-icon {
-      width: 32px;
-      height: 32px;
-      background: rgba(125, 255, 0, 0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .category-checkbox-item .category-icon svg {
-      width: 18px;
-      height: 18px;
-      stroke: #7DFF00;
-    }
-
-    .category-checkbox-item .category-label {
-      font-size: 14px;
-      font-weight: 500;
-      color: white;
-    }
-
-    .category-selection-footer {
-      margin-top: 24px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .continue-btn {
-      background: #7DFF00;
-      color: #0a0a0a;
-      border: none;
-      padding: 14px 32px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .continue-btn:hover:not(:disabled) {
-      background: #9fff40;
-      transform: translateY(-1px);
-    }
-
-    .continue-btn:disabled {
-      background: rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.3);
-      cursor: not-allowed;
-    }
-
-    #selectedCategoryCount {
-      opacity: 0.7;
-      font-weight: 400;
-    }
-
-    /* Phase 2: Sequential Tool Selection */
-    .back-to-categories-btn {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.7);
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .back-to-categories-btn:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.3);
-      color: white;
-    }
-
-    .category-nav-buttons {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .category-nav-btn {
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .category-nav-btn.prev {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.7);
-    }
-
-    .category-nav-btn.prev:hover:not(:disabled) {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.3);
-      color: white;
-    }
-
-    .category-nav-btn.prev:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-
-    .category-nav-btn.next {
-      background: #7DFF00;
-      border: none;
-      color: #0a0a0a;
-    }
-
-    .category-nav-btn.next:hover {
-      background: #9fff40;
-    }
-
-    #categoryProgress {
-      color: rgba(255,255,255,0.5);
     }
 
     /* Tool Items */
@@ -965,271 +762,20 @@
     }
 
     /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .calculator-container {
-        padding: 16px;
-      }
-
-      .calculator-header h1 {
-        font-size: 22px;
-      }
-
-      .calculator-header p {
-        font-size: 12px;
-      }
-
-      .panel {
-        padding: 16px;
-      }
-
-      .panel-title {
-        font-size: 17px;
-      }
-
-      .category-header {
-        padding: 12px;
-      }
-
-      .category-title {
-        font-size: 13px;
-        gap: 8px;
-      }
-
-      .category-icon {
-        width: 28px;
-        height: 28px;
-      }
-
-      .category-icon svg {
-        width: 14px;
-        height: 14px;
-      }
-
-      .category-cost {
-        font-size: 12px;
-      }
-
-      .category-tools {
-        padding: 12px;
-      }
-
-      /* Category selection grid mobile */
-      .category-checkbox-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .category-checkbox-item {
-        padding: 14px;
-        gap: 10px;
-      }
-
-      .category-checkbox-item .category-icon {
-        width: 28px;
-        height: 28px;
-      }
-
-      .category-checkbox-item .category-icon svg {
-        width: 14px;
-        height: 14px;
-      }
-
-      .category-checkbox-item .category-label {
-        font-size: 13px;
-      }
-
-      .continue-btn {
-        width: 100%;
-        padding: 12px 24px;
-        font-size: 14px;
-      }
-
-      .back-to-categories-btn {
-        font-size: 12px;
-        padding: 6px 12px;
-      }
-
-      .category-nav-buttons {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .category-nav-btn {
-        width: 100%;
-        text-align: center;
-        padding: 12px 20px;
-        font-size: 13px;
-      }
-
-      #categoryProgress {
-        font-size: 12px;
-      }
-
+    @media (max-width: 640px) {
       .tool-item {
         grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 10px;
-      }
-
-      .tool-name {
-        font-size: 13px;
+        gap: 12px;
       }
 
       .tier-select {
         justify-content: flex-start;
       }
 
-      .tier-btn {
-        padding: 5px 8px;
-        font-size: 11px;
-      }
-
-      .user-count-input {
-        width: 50px;
-        padding: 5px 8px;
-        font-size: 12px;
-      }
-
-      .tool-cost {
-        font-size: 12px;
-        text-align: left;
-      }
-
-      .waste-item {
-        padding: 14px;
-      }
-
-      .waste-title {
-        font-size: 14px;
-      }
-
-      .waste-description {
-        font-size: 11px;
-      }
-
-      .waste-cost {
-        font-size: 15px;
-      }
-
       .waste-inputs {
         grid-template-columns: 1fr;
-        gap: 12px;
       }
 
-      .input-label {
-        font-size: 11px;
-      }
-
-      .slider-value {
-        min-width: 45px;
-        padding: 5px 8px;
-        font-size: 12px;
-      }
-
-      .ai-agent-item {
-        padding: 12px;
-        gap: 12px;
-      }
-
-      .ai-info h4 {
-        font-size: 13px;
-      }
-
-      .ai-info p {
-        font-size: 11px;
-      }
-
-      .ai-savings-amount {
-        font-size: 14px;
-      }
-
-      .results-hero {
-        padding: 24px 16px;
-      }
-
-      .results-hero-amount {
-        font-size: 40px;
-      }
-
-      .results-hero-period {
-        font-size: 14px;
-      }
-
-      .results-card {
-        padding: 14px;
-        gap: 12px;
-      }
-
-      .results-card-icon {
-        width: 40px;
-        height: 40px;
-      }
-
-      .results-card-value {
-        font-size: 16px;
-      }
-
-      .cta-panel {
-        padding: 32px 16px;
-      }
-
-      .cta-icon {
-        width: 64px;
-        height: 64px;
-      }
-
-      .cta-title {
-        font-size: 24px;
-      }
-
-      .cta-subtitle {
-        font-size: 14px;
-      }
-
-      .cta-stat-value {
-        font-size: 22px;
-      }
-
-      .cta-urgency {
-        padding: 10px 16px;
-        font-size: 12px;
-      }
-
-      .cta-button {
-        padding: 14px 28px;
-        font-size: 14px;
-      }
-
-      .nav-buttons {
-        margin-top: 16px;
-      }
-
-      .nav-btn {
-        padding: 12px 20px;
-        font-size: 13px;
-      }
-
-      .running-total {
-        padding: 12px 16px;
-        margin: 0 -16px -16px;
-        gap: 8px;
-      }
-
-      .running-total-item {
-        flex: 1;
-        min-width: 70px;
-      }
-
-      .running-total-label {
-        font-size: 9px;
-      }
-
-      .running-total-value {
-        font-size: 14px;
-      }
-    }
-
-    @media (max-width: 480px) {
       .progress-steps {
         gap: 4px;
       }
@@ -1242,21 +788,6 @@
       .step-indicator .step-label {
         display: none;
       }
-
-      .step-number {
-        width: 22px;
-        height: 22px;
-        font-size: 11px;
-      }
-
-      .running-total {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .running-total-item {
-        min-width: 45%;
-      }
     }
 
     /* Category Cost Summary */
@@ -1265,220 +796,13 @@
       color: #7DFF00;
       font-weight: 600;
     }
-
-    /* Results Hero */
-    .results-hero {
-      text-align: center;
-      padding: 40px 20px;
-      background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
-      border-radius: 16px;
-      margin-bottom: 24px;
-      border: 1px solid rgba(255, 107, 107, 0.2);
-    }
-
-    .results-hero-label {
-      font-size: 16px;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 8px;
-    }
-
-    .results-hero-amount {
-      font-size: 56px;
-      font-weight: 800;
-      color: #ff6b6b;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .results-hero-period {
-      font-size: 18px;
-      color: rgba(255,255,255,0.5);
-    }
-
-    /* Results Cards */
-    .results-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    @media (max-width: 768px) {
-      .results-cards {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .results-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 20px;
-      background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .results-card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.6);
-    }
-
-    .results-card-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 4px;
-    }
-
-    .results-card-value {
-      font-size: 20px;
-      font-weight: 700;
-      color: #ff6b6b;
-    }
-
-    .results-card-value.green {
-      color: #7DFF00;
-    }
-
-    .results-chart-container {
-      background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    #resultsChart {
-      width: 100%;
-      height: 280px;
-    }
-
-    /* CTA Panel */
-    .cta-panel {
-      text-align: center;
-      padding: 48px 24px;
-    }
-
-    .cta-header {
-      margin-bottom: 32px;
-    }
-
-    .cta-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: rgba(125, 255, 0, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      color: #7DFF00;
-    }
-
-    .cta-title {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .cta-subtitle {
-      font-size: 16px;
-      color: rgba(255,255,255,0.6);
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .cta-stats {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-
-    .cta-stat {
-      text-align: center;
-    }
-
-    .cta-stat-value {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .cta-stat-value.red {
-      color: #ff6b6b;
-    }
-
-    .cta-stat-value.green {
-      color: #7DFF00;
-    }
-
-    .cta-stat-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-    }
-
-    .cta-urgency {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      background: rgba(255, 107, 107, 0.1);
-      border: 1px solid rgba(255, 107, 107, 0.2);
-      border-radius: 24px;
-      margin-bottom: 32px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.8);
-    }
-
-    .cta-urgency-icon {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-    }
-
-    .cta-urgency strong {
-      color: #ff6b6b;
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 18px 40px;
-      background: #7DFF00;
-      color: #0a0a0a;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 12px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      margin-bottom: 16px;
-    }
-
-    .cta-button:hover {
-      background: #6ee600;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(125, 255, 0, 0.3);
-    }
-
-    .cta-note {
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
-    }
   </style>
 </head>
 <body>
 <div class="calculator-container">
   <div class="calculator-header">
     <h1>APG ROI Calculator</h1>
-    <p>Calculate your losses</p>
+    <p>Calculate your potential savings with a custom APG solution</p>
   </div>
 
   <!-- Progress Steps -->
@@ -1497,46 +821,24 @@
     </div>
     <div class="step-indicator" data-step="4">
       <span class="step-number">4</span>
-      <span class="step-label">Your Results</span>
+      <span class="step-label">APG Investment</span>
     </div>
     <div class="step-indicator" data-step="5">
       <span class="step-number">5</span>
-      <span class="step-label">Get Quote</span>
+      <span class="step-label">Summary</span>
     </div>
   </div>
 
   <!-- Step 1: SaaS Tools -->
   <div class="step-content active" id="step1">
-    <!-- Phase 1: Category Selection -->
-    <div class="panel" id="categorySelectionPhase">
+    <div class="panel">
       <div class="panel-header">
         <div>
-          <h2 class="panel-title">Which types of tools does your team use?</h2>
-          <p class="panel-subtitle">Select all categories that apply, then we'll go through each one</p>
+          <h2 class="panel-title">Current SaaS Tools</h2>
+          <p class="panel-subtitle">Select the tools your team currently uses and specify pricing tier & users</p>
         </div>
       </div>
-      <div id="categoryCheckboxGrid" class="category-checkbox-grid"></div>
-      <div class="category-selection-footer">
-        <button class="continue-btn" id="continueToToolsBtn" disabled>
-          Continue <span id="selectedCategoryCount">(0 selected)</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Phase 2: Sequential Tool Selection -->
-    <div class="panel" id="toolSelectionPhase" style="display: none;">
-      <div class="panel-header">
-        <div>
-          <h2 class="panel-title" id="currentCategoryTitle">Category Name</h2>
-          <p class="panel-subtitle" id="categoryProgress">Category 1 of 3</p>
-        </div>
-        <button class="back-to-categories-btn" id="backToCategoriesBtn">← Change Categories</button>
-      </div>
-      <div id="singleCategoryTools"></div>
-      <div class="category-nav-buttons">
-        <button class="category-nav-btn prev" id="prevCategoryBtn" disabled>← Previous Category</button>
-        <button class="category-nav-btn next" id="nextCategoryBtn">Next Category →</button>
-      </div>
+      <div id="toolCategories"></div>
     </div>
   </div>
 
@@ -1566,92 +868,80 @@
     </div>
   </div>
 
-  <!-- Step 4: Your Results -->
+  <!-- Step 4: APG Investment -->
   <div class="step-content" id="step4">
     <div class="panel">
       <div class="panel-header">
         <div>
-          <h2 class="panel-title">Your Results</h2>
-          <p class="panel-subtitle">Here's what your current setup is costing you</p>
+          <h2 class="panel-title">Select Your APG Tier</h2>
+          <p class="panel-subtitle">Choose the investment level that matches your needs</p>
         </div>
       </div>
-
-      <div class="results-hero">
-        <div class="results-hero-label">You're losing</div>
-        <div class="results-hero-amount" id="resultsYearlyWaste">$0</div>
-        <div class="results-hero-period">per year</div>
-      </div>
-
-      <div class="results-cards">
-        <div class="results-card">
-          <div class="results-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-          </div>
-          <div class="results-card-content">
-            <div class="results-card-label">SaaS Tools</div>
-            <div class="results-card-value" id="resultsToolsCost">$0/mo</div>
-          </div>
+      <div class="tier-cards" id="tierCards">
+        <div class="tier-card" data-tier="1">
+          <div class="tier-card-badge">Tier 1</div>
+          <div class="tier-card-price">$65,000</div>
+          <div class="tier-card-subtitle">One-time investment</div>
+          <div class="tier-card-maintenance">+ $999/mo maintenance<br><small>(starts month 7)</small></div>
         </div>
-        <div class="results-card">
-          <div class="results-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          </div>
-          <div class="results-card-content">
-            <div class="results-card-label">Inefficiency Waste</div>
-            <div class="results-card-value" id="resultsWasteCost">$0/mo</div>
-          </div>
+        <div class="tier-card" data-tier="2">
+          <div class="tier-card-badge">Tier 2</div>
+          <div class="tier-card-price">$95,000</div>
+          <div class="tier-card-subtitle">One-time investment</div>
+          <div class="tier-card-maintenance">+ $999/mo maintenance<br><small>(starts month 7)</small></div>
         </div>
-        <div class="results-card">
-          <div class="results-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          </div>
-          <div class="results-card-content">
-            <div class="results-card-label">AI Savings Potential</div>
-            <div class="results-card-value green" id="resultsAISavings">+$0/mo</div>
-          </div>
+        <div class="tier-card selected" data-tier="3">
+          <div class="tier-card-badge">Tier 3</div>
+          <div class="tier-card-price">$125,000</div>
+          <div class="tier-card-subtitle">One-time investment</div>
+          <div class="tier-card-maintenance">+ $999/mo maintenance<br><small>(starts month 7)</small></div>
         </div>
-      </div>
-
-      <div class="results-chart-container">
-        <h3 class="chart-title">12-Month Cost Projection</h3>
-        <canvas id="resultsChart"></canvas>
       </div>
     </div>
   </div>
 
-  <!-- Step 5: Get Your Quote -->
+  <!-- Step 5: Summary -->
   <div class="step-content" id="step5">
-    <div class="panel cta-panel">
-      <div class="cta-header">
-        <div class="cta-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        </div>
-        <h2 class="cta-title">Let's Fix This Together</h2>
-        <p class="cta-subtitle">Book a free consultation to see how we can eliminate your waste</p>
-      </div>
-
-      <div class="cta-stats">
-        <div class="cta-stat">
-          <div class="cta-stat-value red" id="ctaMonthlyWaste">$0</div>
-          <div class="cta-stat-label">Monthly Waste</div>
-        </div>
-        <div class="cta-stat">
-          <div class="cta-stat-value red" id="ctaYearlyWaste">$0</div>
-          <div class="cta-stat-label">Yearly Waste</div>
+    <div class="panel">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">Your ROI Summary</h2>
+          <p class="panel-subtitle">Based on your inputs, here's your potential return on investment</p>
         </div>
       </div>
 
-      <div class="cta-urgency">
-        <svg class="cta-urgency-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12M6 22h12M12 6v4l2 2M6 6a6 6 0 0 0 6 6 6 6 0 0 0 6-6M6 18a6 6 0 0 1 6-6 6 6 0 0 1 6 6"></path></svg>
-        <span>Every month you wait costs you <strong id="ctaUrgencyAmount">$0</strong></span>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="summary-card-label">Total Monthly Waste</div>
+          <div class="summary-card-value red" id="summaryMonthlyWaste">$0</div>
+          <div class="summary-card-subtitle">SaaS + Inefficiency + AI Opportunity</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card-label">Annual Waste (Year 1)</div>
+          <div class="summary-card-value red" id="summaryAnnualWaste">$0</div>
+          <div class="summary-card-subtitle">Without APG solution</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card-label">APG Investment</div>
+          <div class="summary-card-value" id="summaryInvestment">$125,000</div>
+          <div class="summary-card-subtitle">One-time + Year 1 maintenance</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-card-label">Break-Even Point</div>
+          <div class="summary-card-value green" id="summaryBreakeven">Month 4</div>
+          <div class="summary-card-subtitle">When savings exceed investment</div>
+        </div>
       </div>
 
-      <a href="#" class="cta-button" id="ctaButton">
-        Book Your Free Consultation
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-      </a>
+      <div class="chart-container">
+        <h3 class="chart-title">36-Month ROI Projection</h3>
+        <canvas id="roiChart"></canvas>
+      </div>
 
-      <p class="cta-note">No commitment required. We'll review your results and show you a custom solution.</p>
+      <div class="breakdown-section">
+        <h3 class="breakdown-title">Cost Breakdown</h3>
+        <div id="costBreakdown"></div>
+      </div>
     </div>
   </div>
 
@@ -1913,6 +1203,12 @@ const aiAgents = [
   { id: "meetingPrep", name: "Meeting Prep Agent", description: "AI-generated meeting briefings", prevHours: 4, newHours: 1, rate: 50 }
 ];
 
+const apgTiers = [
+  { tier: 1, oneTime: 65000, monthly: 999 },
+  { tier: 2, oneTime: 95000, monthly: 999 },
+  { tier: 3, oneTime: 125000, monthly: 999 }
+];
+
 // ============================================
 // STATE
 // ============================================
@@ -1921,271 +1217,24 @@ let currentStep = 1;
 let selectedTools = {};
 let wasteInputs = {};
 let selectedAIAgents = {};
+let selectedAPGTier = 3;
 let expandedCategories = new Set();
-
-// Category selection state
-let checkedCategories = new Set();
-let categorySequence = [];
-let currentCategoryIndex = 0;
-let toolSelectionPhase = 'categories'; // 'categories' or 'tools'
 
 // ============================================
 // INITIALIZATION
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-  initializeCategorySelection();
-  initializeToolData();
+  initializeToolCategories();
   initializeWasteCategories();
   initializeAIAgents();
+  initializeTierSelection();
   initializeNavigation();
   calculateTotals();
-
-  // Hide bottom nav on Step 1 (it has its own navigation)
-  document.querySelector('.nav-buttons').style.display = 'none';
 });
 
-// Initialize category selection grid (Phase 1)
-function initializeCategorySelection() {
-  const container = document.getElementById('categoryCheckboxGrid');
-  container.innerHTML = '';
-
-  Object.entries(toolsData).forEach(([category, data]) => {
-    const item = document.createElement('div');
-    item.className = 'category-checkbox-item';
-    item.dataset.category = category;
-
-    item.innerHTML = `
-      <div class="checkbox">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-      </div>
-      <div class="category-info">
-        <span class="category-icon">${data.icon}</span>
-        <span class="category-label">${category}</span>
-      </div>
-    `;
-
-    item.addEventListener('click', () => toggleCategorySelection(category, item));
-    container.appendChild(item);
-  });
-
-  // Continue button event
-  document.getElementById('continueToToolsBtn').addEventListener('click', startToolsPhase);
-
-  // Back to categories button
-  document.getElementById('backToCategoriesBtn').addEventListener('click', backToCategoriesPhase);
-
-  // Category navigation buttons
-  document.getElementById('prevCategoryBtn').addEventListener('click', () => navigateCategory(-1));
-  document.getElementById('nextCategoryBtn').addEventListener('click', () => navigateCategory(1));
-}
-
-function toggleCategorySelection(category, element) {
-  if (checkedCategories.has(category)) {
-    checkedCategories.delete(category);
-    element.classList.remove('checked');
-  } else {
-    checkedCategories.add(category);
-    element.classList.add('checked');
-  }
-  updateCategoryCount();
-}
-
-function updateCategoryCount() {
-  const count = checkedCategories.size;
-  const btn = document.getElementById('continueToToolsBtn');
-  const countSpan = document.getElementById('selectedCategoryCount');
-
-  btn.disabled = count === 0;
-  countSpan.textContent = count === 0 ? '(0 selected)' : count === 1 ? '(1 selected)' : `(${count} selected)`;
-}
-
-function startToolsPhase() {
-  if (checkedCategories.size === 0) return;
-
-  // Create sequence from checked categories in order they appear in toolsData
-  categorySequence = Object.keys(toolsData).filter(cat => checkedCategories.has(cat));
-  currentCategoryIndex = 0;
-  toolSelectionPhase = 'tools';
-
-  // Switch phases
-  document.getElementById('categorySelectionPhase').style.display = 'none';
-  document.getElementById('toolSelectionPhase').style.display = 'block';
-
-  renderCurrentCategory();
-  updateHeight();
-}
-
-function backToCategoriesPhase() {
-  toolSelectionPhase = 'categories';
-  document.getElementById('categorySelectionPhase').style.display = 'block';
-  document.getElementById('toolSelectionPhase').style.display = 'none';
-  updateHeight();
-}
-
-function renderCurrentCategory() {
-  const category = categorySequence[currentCategoryIndex];
-  const data = toolsData[category];
-  const total = categorySequence.length;
-
-  // Update header
-  document.getElementById('currentCategoryTitle').textContent = category;
-  document.getElementById('categoryProgress').textContent = `Category ${currentCategoryIndex + 1} of ${total}`;
-
-  // Update nav buttons
-  document.getElementById('prevCategoryBtn').disabled = currentCategoryIndex === 0;
-  const nextBtn = document.getElementById('nextCategoryBtn');
-  if (currentCategoryIndex === total - 1) {
-    nextBtn.textContent = 'Finish & Continue →';
-  } else {
-    nextBtn.textContent = 'Next Category →';
-  }
-
-  // Render tools
-  renderSingleCategoryTools(category, data);
-}
-
-function renderSingleCategoryTools(category, data) {
-  const container = document.getElementById('singleCategoryTools');
-  const categoryId = category.replace(/\s+/g, '-').toLowerCase();
-
-  container.innerHTML = `
-    <div class="category-tools-list">
-      ${data.tools.map(tool => {
-        const toolId = `${categoryId}-${tool.name.replace(/\s+/g, '-').toLowerCase()}`;
-        const toolState = selectedTools[toolId] || { selected: false, tier: 1, users: 5 };
-        const isSelected = toolState.selected;
-        const selectedTier = toolState.tier;
-        const users = toolState.users;
-        const cost = isSelected ? tool.tiers[selectedTier - 1] * users : 0;
-
-        return `
-          <div class="tool-item ${isSelected ? 'selected' : ''}" data-tool-id="${toolId}">
-            <div class="tool-name-section">
-              <div class="tool-checkbox ${isSelected ? 'checked' : ''}" data-tool="${toolId}"></div>
-              <span class="tool-name">${tool.name}</span>
-            </div>
-            <div class="tier-select">
-              ${tool.tiers.map((price, i) => `
-                <button class="tier-btn ${selectedTier === i + 1 ? 'active' : ''}"
-                        data-tool="${toolId}"
-                        data-tier="${i + 1}"
-                        ${!isSelected ? 'disabled' : ''}>
-                  T${i + 1} $${price}
-                </button>
-              `).join('')}
-            </div>
-            <div class="user-count">
-              <input type="number" class="user-count-input" value="${users}" min="1" max="1000"
-                     data-tool="${toolId}" ${!isSelected ? 'disabled' : ''}>
-              <span class="user-count-label">users</span>
-            </div>
-            <div class="tool-cost">${isSelected ? '$' + cost.toFixed(0) + '/mo' : '-'}</div>
-          </div>
-        `;
-      }).join('')}
-    </div>
-  `;
-
-  // Add event listeners for this category's tools
-  addToolEventListeners(container);
-}
-
-function addToolEventListeners(container) {
-  // Checkbox clicks
-  container.querySelectorAll('.tool-checkbox').forEach(checkbox => {
-    checkbox.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const toolId = checkbox.dataset.tool;
-      toggleTool(toolId);
-      renderCurrentCategory();
-      calculateTotals();
-    });
-  });
-
-  // Tier button clicks
-  container.querySelectorAll('.tier-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const toolId = btn.dataset.tool;
-      const tier = parseInt(btn.dataset.tier);
-      if (selectedTools[toolId] && selectedTools[toolId].selected) {
-        selectedTools[toolId].tier = tier;
-        renderCurrentCategory();
-        calculateTotals();
-      }
-    });
-  });
-
-  // User count changes
-  container.querySelectorAll('.user-count-input').forEach(input => {
-    input.addEventListener('change', (e) => {
-      const toolId = input.dataset.tool;
-      const users = Math.max(1, Math.min(1000, parseInt(input.value) || 1));
-      if (selectedTools[toolId]) {
-        selectedTools[toolId].users = users;
-        renderCurrentCategory();
-        calculateTotals();
-      }
-    });
-  });
-}
-
-function toggleTool(toolId) {
-  if (selectedTools[toolId]) {
-    selectedTools[toolId].selected = !selectedTools[toolId].selected;
-  }
-}
-
-function navigateCategory(direction) {
-  const newIndex = currentCategoryIndex + direction;
-
-  if (newIndex < 0) return;
-
-  if (newIndex >= categorySequence.length) {
-    // Finished all categories - go to step 2
-    goToStep(2);
-    return;
-  }
-
-  currentCategoryIndex = newIndex;
-  renderCurrentCategory();
-
-  // Scroll to top
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-  window.parent.postMessage({ type: 'scrollToTop' }, '*');
-
-  updateHeight();
-}
-
-// Initialize tool data without rendering (old initializeToolCategories data setup)
-function initializeToolData() {
-  Object.entries(toolsData).forEach(([category, data]) => {
-    const categoryId = category.replace(/\s+/g, '-').toLowerCase();
-    data.tools.forEach(tool => {
-      const toolId = `${categoryId}-${tool.name.replace(/\s+/g, '-').toLowerCase()}`;
-      if (!selectedTools[toolId]) {
-        selectedTools[toolId] = {
-          category: category,
-          name: tool.name,
-          tiers: tool.tiers,
-          selected: false,
-          tier: 1,
-          users: 5
-        };
-      }
-    });
-  });
-}
-
-// LEGACY: Keep for reference but no longer used
 function initializeToolCategories() {
   const container = document.getElementById('toolCategories');
-  if (!container) return;
   container.innerHTML = '';
 
   Object.entries(toolsData).forEach(([category, data]) => {
@@ -2438,123 +1487,15 @@ function initializeAIAgents() {
   });
 }
 
-function updateResultsPage() {
-  const { toolsCost, wasteCost, aiCost, totalWaste } = calculateTotals();
-  const yearlyWaste = totalWaste * 12;
-
-  // Update results hero
-  document.getElementById('resultsYearlyWaste').textContent = '$' + formatNumber(yearlyWaste);
-
-  // Update results cards
-  document.getElementById('resultsToolsCost').textContent = '$' + formatNumber(toolsCost) + '/mo';
-  document.getElementById('resultsWasteCost').textContent = '$' + formatNumber(wasteCost) + '/mo';
-  document.getElementById('resultsAISavings').textContent = '+$' + formatNumber(aiCost) + '/mo';
-
-  // Draw results chart
-  drawResultsChart(totalWaste);
-}
-
-function updateCTAPage() {
-  const { toolsCost, wasteCost, aiCost, totalWaste } = calculateTotals();
-  const yearlyWaste = totalWaste * 12;
-
-  // Update CTA stats
-  document.getElementById('ctaMonthlyWaste').textContent = '$' + formatNumber(totalWaste);
-  document.getElementById('ctaYearlyWaste').textContent = '$' + formatNumber(yearlyWaste);
-  document.getElementById('ctaUrgencyAmount').textContent = '$' + formatNumber(totalWaste);
-}
-
-function drawResultsChart(monthlyWaste) {
-  const canvas = document.getElementById('resultsChart');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  const rect = canvas.parentElement.getBoundingClientRect();
-  canvas.width = rect.width - 48;
-  canvas.height = 280;
-
-  const width = canvas.width;
-  const height = canvas.height;
-  const padding = { top: 40, right: 40, bottom: 40, left: 70 };
-  const chartWidth = width - padding.left - padding.right;
-  const chartHeight = height - padding.top - padding.bottom;
-
-  // Generate 12-month data
-  const data = [];
-  for (let month = 0; month <= 12; month++) {
-    data.push({ month, value: monthlyWaste * month });
-  }
-
-  const maxValue = monthlyWaste * 12;
-  const yScale = chartHeight / maxValue;
-  const xScale = chartWidth / 12;
-
-  // Clear canvas
-  ctx.clearRect(0, 0, width, height);
-
-  // Draw grid
-  ctx.strokeStyle = 'rgba(255,255,255,0.1)';
-  ctx.lineWidth = 1;
-
-  for (let i = 0; i <= 4; i++) {
-    const y = padding.top + (chartHeight / 4) * i;
-    ctx.beginPath();
-    ctx.moveTo(padding.left, y);
-    ctx.lineTo(width - padding.right, y);
-    ctx.stroke();
-
-    ctx.fillStyle = 'rgba(255,255,255,0.5)';
-    ctx.font = '11px Inter';
-    ctx.textAlign = 'right';
-    const value = maxValue - (maxValue / 4) * i;
-    ctx.fillText('$' + formatNumber(value), padding.left - 10, y + 4);
-  }
-
-  // X-axis labels
-  ctx.textAlign = 'center';
-  for (let month = 0; month <= 12; month += 3) {
-    const x = padding.left + month * xScale;
-    ctx.fillText('M' + month, x, height - 15);
-  }
-
-  // Draw area fill
-  ctx.beginPath();
-  ctx.moveTo(padding.left, padding.top + chartHeight);
-  data.forEach((point) => {
-    const x = padding.left + point.month * xScale;
-    const y = padding.top + chartHeight - (point.value * yScale);
-    ctx.lineTo(x, y);
+function initializeTierSelection() {
+  document.querySelectorAll('.tier-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedAPGTier = parseInt(card.dataset.tier);
+      calculateTotals();
+    });
   });
-  ctx.lineTo(padding.left + 12 * xScale, padding.top + chartHeight);
-  ctx.closePath();
-  ctx.fillStyle = 'rgba(255, 107, 107, 0.2)';
-  ctx.fill();
-
-  // Draw line
-  ctx.beginPath();
-  ctx.strokeStyle = '#ff6b6b';
-  ctx.lineWidth = 3;
-  data.forEach((point, i) => {
-    const x = padding.left + point.month * xScale;
-    const y = padding.top + chartHeight - (point.value * yScale);
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-  });
-  ctx.stroke();
-
-  // End point
-  const endX = padding.left + 12 * xScale;
-  const endY = padding.top + chartHeight - (maxValue * yScale);
-  ctx.beginPath();
-  ctx.arc(endX, endY, 6, 0, Math.PI * 2);
-  ctx.fillStyle = '#ff6b6b';
-  ctx.fill();
-
-  // Label
-  ctx.fillStyle = '#ff6b6b';
-  ctx.font = 'bold 12px Inter';
-  ctx.textAlign = 'center';
-  ctx.fillText('$' + formatNumber(maxValue), endX, endY - 15);
 }
 
 function initializeNavigation() {
@@ -2562,45 +1503,12 @@ function initializeNavigation() {
   const nextBtn = document.getElementById('nextBtn');
 
   prevBtn.addEventListener('click', () => {
-    // Handle Step 1 phases
-    if (currentStep === 1 && toolSelectionPhase === 'tools') {
-      // Go to previous category or back to category selection
-      if (currentCategoryIndex > 0) {
-        navigateCategory(-1);
-      } else {
-        backToCategoriesPhase();
-      }
-      return;
-    }
-
     if (currentStep > 1) {
       goToStep(currentStep - 1);
     }
   });
 
   nextBtn.addEventListener('click', () => {
-    // Handle Step 5 restart
-    if (currentStep === 5) {
-      // Reset everything and go to step 1
-      resetCalculator();
-      return;
-    }
-
-    // Handle Step 1 phases
-    if (currentStep === 1) {
-      if (toolSelectionPhase === 'categories') {
-        // Need to select categories first
-        if (checkedCategories.size > 0) {
-          startToolsPhase();
-        }
-        return;
-      } else {
-        // In tools phase - go to next category or step 2
-        navigateCategory(1);
-        return;
-      }
-    }
-
     if (currentStep < 5) {
       goToStep(currentStep + 1);
     }
@@ -2613,48 +1521,6 @@ function initializeNavigation() {
       goToStep(step);
     });
   });
-}
-
-function resetCalculator() {
-  // Reset all state
-  currentStep = 1;
-  selectedTools = {};
-  checkedCategories = new Set();
-  categorySequence = [];
-  currentCategoryIndex = 0;
-  toolSelectionPhase = 'categories';
-
-  // Reset waste inputs
-  Object.keys(wasteInputs).forEach(key => {
-    wasteInputs[key] = { hours: 10, rate: 50 };
-  });
-
-  // Reset AI agents
-  Object.keys(selectedAIAgents).forEach(key => {
-    selectedAIAgents[key] = false;
-  });
-
-  // Re-initialize
-  initializeCategorySelection();
-  initializeToolData();
-  initializeWasteCategories();
-  initializeAIAgents();
-
-  // Show category selection phase
-  document.getElementById('categorySelectionPhase').style.display = 'block';
-  document.getElementById('toolSelectionPhase').style.display = 'none';
-
-  // Reset UI
-  document.querySelectorAll('.category-checkbox-item').forEach(item => {
-    item.classList.remove('checked');
-  });
-  updateCategoryCount();
-
-  // Hide bottom nav (Step 1 has its own navigation)
-  document.querySelector('.nav-buttons').style.display = 'none';
-
-  goToStep(1);
-  calculateTotals();
 }
 
 function goToStep(step) {
@@ -2677,51 +1543,21 @@ function goToStep(step) {
   });
   document.getElementById(`step${currentStep}`).classList.add('active');
 
-  // Handle Step 1 phases when returning
-  if (currentStep === 1) {
-    if (checkedCategories.size > 0 && toolSelectionPhase === 'tools') {
-      // Return to tools phase, show last category they were on
-      document.getElementById('categorySelectionPhase').style.display = 'none';
-      document.getElementById('toolSelectionPhase').style.display = 'block';
-      renderCurrentCategory();
-    } else {
-      // Show category selection
-      document.getElementById('categorySelectionPhase').style.display = 'block';
-      document.getElementById('toolSelectionPhase').style.display = 'none';
-    }
-  }
-
-  // Hide bottom nav buttons on Step 1 (category selection has its own navigation)
-  const navButtons = document.querySelector('.nav-buttons');
-  if (currentStep === 1) {
-    navButtons.style.display = 'none';
-  } else {
-    navButtons.style.display = 'flex';
-    document.getElementById('prevBtn').disabled = false;
-    document.getElementById('nextBtn').textContent = currentStep === 5 ? 'Start Over' : 'Next Step';
-  }
-
-  if (currentStep === 4) {
-    updateResultsPage();
-  }
+  // Update nav buttons
+  document.getElementById('prevBtn').disabled = currentStep === 1;
+  document.getElementById('nextBtn').textContent = currentStep === 5 ? 'Start Over' : 'Next Step';
 
   if (currentStep === 5) {
-    updateCTAPage();
-    document.getElementById('nextBtn').textContent = 'Start Over';
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentStep === 5) {
+        goToStep(1);
+      }
+    }, { once: true });
+    updateSummary();
   }
 
-  // Update height for iframe - reset and recalculate after DOM updates
-  lastSentHeight = 0;
-  setTimeout(updateHeight, 50);
-
-  // Scroll to top - both inside iframe and tell parent
-  // Internal scroll for mobile fallback
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-
-  // Tell parent to scroll to top of iframe
-  window.parent.postMessage({ type: 'scrollToTop' }, '*');
+  // Update height for iframe
+  updateHeight();
 }
 
 // ============================================
@@ -2763,6 +1599,195 @@ function calculateTotals() {
   return { toolsCost, wasteCost, aiCost, totalWaste };
 }
 
+function updateSummary() {
+  const { toolsCost, wasteCost, aiCost, totalWaste } = calculateTotals();
+  const annualWaste = totalWaste * 12;
+  const annualAISavings = aiCost * 12;
+
+  const tier = apgTiers.find(t => t.tier === selectedAPGTier);
+  const year1Investment = tier.oneTime + (tier.monthly * 6); // Maintenance starts month 7
+
+  // Calculate break-even
+  let breakEvenMonth = 0;
+  let cumulativeSavings = 0;
+  let cumulativeInvestment = tier.oneTime;
+
+  for (let month = 1; month <= 36; month++) {
+    cumulativeSavings += totalWaste;
+    if (month >= 7) {
+      cumulativeInvestment += tier.monthly;
+    }
+    if (cumulativeSavings >= cumulativeInvestment && breakEvenMonth === 0) {
+      breakEvenMonth = month;
+    }
+  }
+
+  // Update summary cards
+  document.getElementById('summaryMonthlyWaste').textContent = '$' + formatNumber(totalWaste);
+  document.getElementById('summaryAnnualWaste').textContent = '$' + formatNumber(annualWaste);
+  document.getElementById('summaryInvestment').textContent = '$' + formatNumber(tier.oneTime);
+  document.getElementById('summaryBreakeven').textContent = breakEvenMonth > 0 ? `Month ${breakEvenMonth}` : 'N/A';
+
+  // Update breakdown
+  const breakdown = document.getElementById('costBreakdown');
+  const threeYearSavings = (totalWaste * 36) - (tier.oneTime + tier.monthly * 30);
+  breakdown.innerHTML = `
+    <div class="breakdown-item">
+      <span class="breakdown-label">SaaS Tools (monthly)</span>
+      <span class="breakdown-value negative">$${formatNumber(toolsCost)}</span>
+    </div>
+    <div class="breakdown-item">
+      <span class="breakdown-label">Inefficiency Waste (monthly)</span>
+      <span class="breakdown-value negative">$${formatNumber(wasteCost)}</span>
+    </div>
+    <div class="breakdown-item">
+      <span class="breakdown-label"><strong>Total Monthly Waste</strong></span>
+      <span class="breakdown-value negative"><strong>$${formatNumber(totalWaste)}</strong></span>
+    </div>
+    <div class="breakdown-item" style="margin-top: 16px; padding-top: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
+      <span class="breakdown-label">AI Enablement Savings (monthly)</span>
+      <span class="breakdown-value positive">+$${formatNumber(aiCost)}</span>
+    </div>
+    <div class="breakdown-item" style="margin-top: 16px; padding-top: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
+      <span class="breakdown-label">APG One-Time Investment</span>
+      <span class="breakdown-value">$${formatNumber(tier.oneTime)}</span>
+    </div>
+    <div class="breakdown-item">
+      <span class="breakdown-label">Monthly Maintenance (from month 7)</span>
+      <span class="breakdown-value">$${formatNumber(tier.monthly)}</span>
+    </div>
+    <div class="breakdown-item" style="margin-top: 16px; padding-top: 16px; border-top: 2px solid rgba(255,255,255,0.1);">
+      <span class="breakdown-label"><strong>3-Year Net Savings</strong></span>
+      <span class="breakdown-value positive"><strong>$${formatNumber(threeYearSavings)}</strong></span>
+    </div>
+  `;
+
+  // Draw chart
+  drawChart(totalWaste, tier);
+}
+
+function drawChart(monthlyWaste, tier) {
+  const canvas = document.getElementById('roiChart');
+  const ctx = canvas.getContext('2d');
+
+  // Set canvas size
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width - 48;
+  canvas.height = 340;
+
+  const width = canvas.width;
+  const height = canvas.height;
+  const padding = { top: 50, right: 20, bottom: 40, left: 70 };
+  const chartWidth = width - padding.left - padding.right;
+  const chartHeight = height - padding.top - padding.bottom;
+
+  // Generate data points
+  const wasteData = [];
+  const investmentData = [];
+  let cumulativeWaste = 0;
+  let cumulativeInvestment = tier.oneTime;
+
+  for (let month = 0; month <= 36; month++) {
+    if (month > 0) {
+      cumulativeWaste += monthlyWaste;
+      if (month >= 7) {
+        cumulativeInvestment += tier.monthly;
+      }
+    }
+    wasteData.push({ month, value: cumulativeWaste });
+    investmentData.push({ month, value: cumulativeInvestment });
+  }
+
+  const maxValue = Math.max(cumulativeWaste, cumulativeInvestment);
+  const yScale = chartHeight / maxValue;
+  const xScale = chartWidth / 36;
+
+  // Clear canvas
+  ctx.clearRect(0, 0, width, height);
+
+  // Draw grid lines
+  ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+  ctx.lineWidth = 1;
+
+  for (let i = 0; i <= 5; i++) {
+    const y = padding.top + (chartHeight / 5) * i;
+    ctx.beginPath();
+    ctx.moveTo(padding.left, y);
+    ctx.lineTo(width - padding.right, y);
+    ctx.stroke();
+
+    // Y-axis labels
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    ctx.font = '11px Inter';
+    ctx.textAlign = 'right';
+    const value = maxValue - (maxValue / 5) * i;
+    ctx.fillText('$' + formatNumber(value), padding.left - 10, y + 4);
+  }
+
+  // X-axis labels
+  ctx.textAlign = 'center';
+  for (let month = 0; month <= 36; month += 6) {
+    const x = padding.left + month * xScale;
+    ctx.fillText('M' + month, x, height - 10);
+  }
+
+  // Draw investment line
+  ctx.beginPath();
+  ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+  ctx.lineWidth = 2;
+  investmentData.forEach((point, i) => {
+    const x = padding.left + point.month * xScale;
+    const y = padding.top + chartHeight - (point.value * yScale);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Draw waste line
+  ctx.beginPath();
+  ctx.strokeStyle = '#7DFF00';
+  ctx.lineWidth = 3;
+  wasteData.forEach((point, i) => {
+    const x = padding.left + point.month * xScale;
+    const y = padding.top + chartHeight - (point.value * yScale);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Find and mark break-even point
+  for (let i = 1; i < wasteData.length; i++) {
+    if (wasteData[i].value >= investmentData[i].value) {
+      const x = padding.left + wasteData[i].month * xScale;
+      const y = padding.top + chartHeight - (wasteData[i].value * yScale);
+
+      ctx.beginPath();
+      ctx.arc(x, y, 6, 0, Math.PI * 2);
+      ctx.fillStyle = '#7DFF00';
+      ctx.fill();
+
+      ctx.fillStyle = '#7DFF00';
+      ctx.font = 'bold 12px Inter';
+      ctx.textAlign = 'center';
+      ctx.fillText('Break-even', x, y - 15);
+      break;
+    }
+  }
+
+  // Legend - positioned at top
+  ctx.font = '12px Inter';
+  ctx.textAlign = 'left';
+
+  ctx.fillStyle = '#7DFF00';
+  ctx.fillRect(padding.left, 15, 12, 12);
+  ctx.fillStyle = 'rgba(255,255,255,0.8)';
+  ctx.fillText('Cumulative Waste Savings', padding.left + 18, 25);
+
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.fillRect(padding.left + 200, 15, 12, 12);
+  ctx.fillStyle = 'rgba(255,255,255,0.8)';
+  ctx.fillText('APG Investment', padding.left + 218, 25);
+}
 
 // ============================================
 // UTILITIES
@@ -2778,8 +1803,13 @@ let heightUpdateTimeout = null;
 
 function updateHeight() {
   try {
-    const container = document.querySelector('.calculator-container');
-    const height = container ? container.offsetHeight + 48 : document.body.scrollHeight;
+    const height = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
 
     if (Math.abs(height - lastSentHeight) < 10) return;
 
@@ -2792,20 +1822,11 @@ function updateHeight() {
 
 function updateHeightDelayed() {
   if (heightUpdateTimeout) clearTimeout(heightUpdateTimeout);
-  heightUpdateTimeout = setTimeout(updateHeight, 100);
+  heightUpdateTimeout = setTimeout(updateHeight, 150);
 }
 
-// Send height immediately and after short delays to catch initial render
-updateHeight();
-setTimeout(updateHeight, 50);
-setTimeout(updateHeight, 200);
-setTimeout(updateHeight, 500);
-
 window.addEventListener('resize', updateHeightDelayed);
-window.addEventListener('load', function() {
-  updateHeight();
-  setTimeout(updateHeight, 100);
-});
+window.addEventListener('load', updateHeightDelayed);
 
 const observer = new MutationObserver(updateHeightDelayed);
 observer.observe(document.body, {

@@ -1,0 +1,202 @@
+APG ROI CALCULATOR,,,,,,,,,,,,,,,
+SECTION 1: SAAS TOOL SELECTION,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+Category,Tool Name, Tier 1 ($/user/mo) , Tier 2 ($/user/mo) , Tier 3 ($/user/mo) ,Flat Rate Option,Use This Tool? (Y/N),Selected Tier (1/2/3/F),Number of Users, Monthly Cost ,,,,,,
+CRM & Sales,HubSpot, $ 15.00 , $ 50.00 , $ 125.00 ,,,,,  ,,,,,,
+CRM & Sales,Salesforce, $ 25.00 , $ 75.00 , $ 150.00 ,,,,,  ,,,,,,
+CRM & Sales,Pipedrive, $ 14.00 , $ 29.00 , $ 49.00 ,,,,,  ,,,,,,
+CRM & Sales,Zoho CRM, $ 14.00 , $ 23.00 , $ 40.00 ,,,,,  ,,,,,,
+CRM & Sales,Copper, $ 29.00 , $ 69.00 , $ 134.00 ,,,,,  ,,,,,,
+CRM & Sales,Close, $ 29.00 , $ 69.00 , $ 129.00 ,,,,,  ,,,,,,
+CRM & Sales,ActiveCampaign,,,,,,,,  ,,,,,,
+CRM & Sales,Monday Sales CRM, $ 12.00 , $ 17.00 , $ 28.00 ,,,,,  ,,,,,,
+Project Management,Asana, $ 10.99 , $ 24.99 , Custom ,,,,,  ,,,,,,
+Project Management,Monday.com, $ 9.00 , $ 12.00 , $ 19.00 ,,,,,  ,,,,,,
+Project Management,ClickUp, $ 7.00 , $ 12.00 , $ 19.00 ,,,,,  ,,,,,,
+Project Management,Trello, $ 5.00 , $ 10.00 , $ 17.50 ,,,,,  ,,,,,,
+Project Management,Basecamp,,,,,,,,  ,,,,,,
+Project Management,Wrike, $ 9.80 , $ 24.80 , Custom ,,,,,  ,,,,,,
+Project Management,Smartsheet, $ 9.00 , $ 19.00 , $ 39.00 ,,,,,  ,,,,,,
+Form Tools,Typeform, $ 25.00 , $ 50.00 , $ 83.00 ,,,,,  ,,,,,,
+Form Tools,Jotform, $ 34.00 , $ 39.00 , $ 99.00 ,,,,,  ,,,,,,
+Form Tools,Wufoo, $ 14.00 , $ 29.00 , $ 74.00 ,,,,,  ,,,,,,
+Form Tools,Cognito Forms, $ 10.00 , $ 15.00 , $ 25.00 ,,,,,  ,,,,,,
+Form Tools,Google Forms, $ -   , $ -   , $ -   ,,,,,  ,,,,,,
+Social Media Scheduling,Buffer, $ 6.00 , $ 12.00 , $ 120.00 ,,,,,  ,,,,,,
+Social Media Scheduling,Hootsuite, $ 99.00 , $ 249.00 , $ 739.00 ,,,,,  ,,,,,,
+Social Media Scheduling,Later, $ 18.00 , $ 40.00 , $ 80.00 ,,,,,  ,,,,,,
+Social Media Scheduling,Sprout Social, $ 249.00 , $ 399.00 , $ 499.00 ,,,,,  ,,,,,,
+Social Media Scheduling,SocialBee, $ 29.00 , $ 49.00 , $ 99.00 ,,,,,  ,,,,,,
+Social Media Scheduling,CoSchedule, $ 29.00 , $ 49.00 , Custom ,,,,,  ,,,,,,
+Dashboards & BI,Tableau, $ 70.00 , $ 70.00 , $ 70.00 ,,,,,  ,,,,,,
+Dashboards & BI,Power BI, $ 10.00 , $ 20.00 , $ 20.00 ,,,,,  ,,,,,,
+Dashboards & BI,Looker,,,,,,,,  ,,,,,,
+Dashboards & BI,Metabase, $ -   , $ -   , $ -   ,,,,,  ,,,,,,
+Dashboards & BI,Databox, $ 72.00 , $ 135.00 , $ 231.00 ,,,,,  ,,,,,,
+Dashboards & BI,Klipfolio, $ 199.00 , $ 299.00 , $ 799.00 ,,,,,  ,,,,,,
+Support Tickets,Zendesk, $ 19.00 , $ 49.00 , $ 99.00 ,,,,,  ,,,,,,
+Support Tickets,Freshdesk, $ 15.00 , $ 49.00 , $ 79.00 ,,,,,  ,,,,,,
+Support Tickets,Help Scout, $ 20.00 , $ 40.00 , $ 65.00 ,,,,,  ,,,,,,
+Support Tickets,Intercom, $ 74.00 , $ 132.00 , $ 249.00 ,,,,,  ,,,,,,
+Support Tickets,Front, $ 19.00 , $ 49.00 , $ 99.00 ,,,,,  ,,,,,,
+Support Tickets,Drift, $ 400.00 ," $ 1,500.00 ", Custom ,,,,,  ,,,,,,
+Support Tickets,Gorgias, $ 60.00 , $ 300.00 , $ 750.00 ,,,,,  ,,,,,,
+Invoicing & Accounting,QuickBooks Online, $ 30.00 , $ 60.00 , $ 90.00 ,,,,,  ,,,,,,
+Invoicing & Accounting,Xero, $ 13.00 , $ 37.00 , $ 70.00 ,,,,,  ,,,,,,
+Invoicing & Accounting,FreshBooks, $ 17.00 , $ 30.00 , $ 55.00 ,,,,,  ,,,,,,
+Invoicing & Accounting,Wave, $ -   , $ -   , $ -   ,,,,,  ,,,,,,
+Invoicing & Accounting,Zoho Books, $ 15.00 , $ 40.00 , $ 60.00 ,,,,,  ,,,,,,
+Invoicing & Accounting,Bill.com,,,,,,,,  ,,,,,,
+Time Tracking,Toggl Track, $ 10.00 , $ 20.00 , Custom ,,,,,  ,,,,,,
+Time Tracking,Harvest, $ 12.00 ,,,,,,,  ,,,,,,
+Time Tracking,Clockify, $ -   , $ 4.99 , $ 9.99 ,,,,,  ,,,,,,
+Time Tracking,Timely, $ 9.00 , $ 16.00 , $ 22.00 ,,,,,  ,,,,,,
+Time Tracking,Hubstaff, $ 7.00 , $ 10.00 , $ 20.00 ,,,,,  ,,,,,,
+Communication,Slack, $ 7.25 , $ 12.50 , $ 15.00 ,,,,,  ,,,,,,
+Communication,Microsoft Teams, $ 6.00 , $ 12.50 , $ 22.00 ,,,,,  ,,,,,,
+Communication,Zoom, $ 12.50 , $ 16.67 , Custom ,,,,,  ,,,,,,
+Communication,Google Workspace, $ 6.00 , $ 12.00 , $ 18.00 ,,,,,  ,,,,,,
+Communication,Microsoft 365, $ 6.00 , $ 12.50 , $ 22.00 ,,,,,  ,,,,,,
+Automation,Zapier, $ 19.99 , $ 49.00 , $ 299.00 ,,,,,  ,,,,,,
+Automation,Make, $ 9.00 , $ 16.00 , $ 29.00 ,,,,,  ,,,,,,
+Automation,n8n, $ -   , $ 20.00 , $ 50.00 ,,,,,  ,,,,,,
+Document Management,Google Drive, $ 6.00 , $ 12.00 , $ 18.00 ,,,,,  ,,,,,,
+Document Management,Dropbox, $ 12.00 , $ 18.00 , $ 24.00 ,,,,,  ,,,,,,
+Document Management,OneDrive, $ 6.00 , $ 12.50 , $ 22.00 ,,,,,  ,,,,,,
+Document Management,Box, $ 5.00 , $ 15.00 , $ 25.00 ,,,,,  ,,,,,,
+E-signature,DocuSign, $ 10.00 , $ 25.00 , $ 40.00 ,,,,,  ,,,,,,
+E-signature,PandaDoc, $ 19.00 , $ 49.00 , Custom ,,,,,  ,,,,,,
+E-signature,HelloSign, $ 15.00 , $ 25.00 , $ 40.00 ,,,,,  ,,,,,,
+E-signature,SignNow, $ 8.00 , $ 15.00 , $ 25.00 ,,,,,  ,,,,,,
+Scheduling,Calendly, $ 8.00 , $ 12.00 , $ 16.00 ,,,,,  ,,,,,,
+Scheduling,Acuity, $ 16.00 , $ 27.00 , $ 49.00 ,,,,,  ,,,,,,
+Marketing,Mailchimp, $ 13.00 , $ 20.00 , $ 350.00 ,,,,,  ,,,,,,
+Marketing,Constant Contact, $ 12.00 , $ 35.00 , $ 80.00 ,,,,,  ,,,,,,
+Marketing,ConvertKit, $ 9.00 , $ 25.00 , $ 50.00 ,,,,,  ,,,,,,
+Form Tools,Typeform, $ 25.00 , $ 50.00 , $ 83.00 ,,,,,  ,,,,,,
+Form Tools,Jotform, $ 34.00 , $ 39.00 , $ 99.00 ,,,,,  ,,,,,,
+Form Tools,Google Forms, $ -   , $ -   , $ -   ,,,,,  ,,,,,,
+Form Tools,SurveyMonkey, $ 25.00 , $ 35.00 , $ 75.00 ,,,,,  ,,,,,,
+Form Tools,Formstack, $ 50.00 , $ 83.00 , $ 208.00 ,,,,,  ,,,,,,
+Social Media Scheduling,Buffer, $ 6.00 , $ 12.00 , $ 120.00 ,,,,,  ,,,,,,
+Social Media Scheduling,Hootsuite, $ 99.00 , $ 249.00 , $ 739.00 ,,,,,  ,,,,,,
+Social Media Scheduling,Later, $ 18.00 , $ 40.00 , $ 80.00 ,,,,,  ,,,,,,
+Social Media Scheduling,Sprout Social, $ 249.00 , $ 399.00 , $ 499.00 ,,,,,  ,,,,,,
+Social Media Scheduling,Planoly, $ 13.00 , $ 23.00 , $ 43.00 ,,,,,  ,,,,,,
+Social Media Scheduling,CoSchedule, $ 29.00 , $ 49.00 , $ 99.00 ,,,,,  ,,,,,,
+Dashboard & BI Tools,Tableau, $ 70.00 , $ 70.00 , $ 70.00 ,,,,,  ,,,,,,
+Dashboard & BI Tools,Power BI, $ 10.00 , $ 20.00 , $ 20.00 ,,,,,  ,,,,,,
+Dashboard & BI Tools,Looker,,,,,,,,  ,,,,,,
+Dashboard & BI Tools,Metabase, $ -   , $ 85.00 , $ 85.00 ,,,,,  ,,,,,,
+Dashboard & BI Tools,Domo,,,,,,,,  ,,,,,,
+Dashboard & BI Tools,Klipfolio, $ 49.00 , $ 199.00 , $ 799.00 ,,,,,  ,,,,,,
+Dashboard & BI Tools,Databox, $ 47.00 , $ 135.00 , $ 231.00 ,,,,,  ,,,,,,
+Support & Help Desk,Zendesk, $ 19.00 , $ 49.00 , $ 99.00 ,,,,,  ,,,,,,
+Support & Help Desk,Freshdesk, $ 15.00 , $ 49.00 , $ 79.00 ,,,,,  ,,,,,,
+Support & Help Desk,Help Scout, $ 20.00 , $ 40.00 , $ 65.00 ,,,,,  ,,,,,,
+Support & Help Desk,Intercom, $ 74.00 , $ 119.00 , $ 219.00 ,,,,,  ,,,,,,
+Support & Help Desk,Front, $ 19.00 , $ 49.00 , $ 99.00 ,,,,,  ,,,,,,
+Support & Help Desk,Groove, $ 12.00 , $ 20.00 , $ 40.00 ,,,,,  ,,,,,,
+Support & Help Desk,Drift," $ 2,500.00 "," $ 2,500.00 "," $ 2,500.00 ",,,,,  ,,,,,,
+Collaboration & Wikis,Coda, $ 10.00 , $ 30.00 , $ 50.00 ,,,,,  ,,,,,,
+Collaboration & Wikis,Confluence, $ 5.75 , $ 11.00 , $ 22.05 ,,,,,  ,,,,,,
+Collaboration & Wikis,Guru, $ 5.00 , $ 10.00 , $ 20.00 ,,,,,  ,,,,,,
+Collaboration & Wikis,Slite, $ 8.00 , $ 12.50 , $ 15.00 ,,,,,  ,,,,,,
+HR & Payroll,Gusto (Base + per user), $ 40.00 , $ 80.00 , Custom ,,,,,  ,,,,,,
+HR & Payroll,Rippling, $ 8.00 , $ 16.00 , $ 25.00 ,,,,,  ,,,,,,
+TOTAL,,,,,,,,, $ -   ,,,,,,
+,,,,,,,,,,,,,,,
+Category,Cost,,,,,,,,,,,,,,
+CRM & Sales, $ -   ,,,,,,,,,,,,,,
+Project Management, $ -   ,,,,,,,,,,,,,,
+Form Tools, $ -   ,,,,,,,,,,,,,,
+Social Media Scheduling, $ -   ,,,,,,,,,,,,,,
+Dashboards & BI, $ -   ,,,,,,,,,,,,,,
+Support Tickets, $ -   ,,,,,,,,,,,,,,
+Invoicing & Accounting, $ -   ,,,,,,,,,,,,,,
+Time Tracking, $ -   ,,,,,,,,,,,,,,
+Communication, $ -   ,,,,,,,,,,,,,,
+Automation, $ -   ,,,,,,,,,,,,,,
+Document Management, $ -   ,,,,,,,,,,,,,,
+E-signature, $ -   ,,,,,,,,,,,,,,
+Scheduling, $ -   ,,,,,,,,,,,,,,
+Marketing, $ -   ,,,,,,,,,,,,,,
+Dashboard & BI Tools, $ -   ,,,,,,,,,,,,,,
+Support & Help Desk, $ -   ,,,,,,,,,,,,,,
+Collaboration & Wikis, $ -   ,,,,,,,,,,,,,,
+HR & Payroll, $ -   ,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+SECTION 2: INEFFICIENCY WASTE,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+Waste Category,Description,"Hours Per Week
+(Team-Wide)",Hourly Labor Rate (AUD),Monthly Cost,,,,,,,,,,,
+Duct-tape labor,Hours copying data between tools / fixing automations / updating multiple systems,40,40," $ 6,400.00 ",,,,,,,,,,,
+Email archaeology,Hours searching emails for client info / attachments / project history,40,40," $ 6,400.00 ",,,,,,,,,,,
+Spreadsheet hell,Hours updating/reconciling spreadsheets / version control issues,40,40," $ 6,400.00 ",,,,,,,,,,,
+File hunting,Hours searching for latest version of files,40,40," $ 6,400.00 ",,,,,,,,,,,
+Status meetings,Hours in meetings that exist only because there's no dashboard,40,40," $ 6,400.00 ",,,,,,,,,,,
+TOTAL MONTHLY INEFFICIENCY COST:,,,," $ 32,000.00 ",,,,,,,,,,,
+,,,,,,,,,,,,,,,
+SECTION 3: AI ENABLEMENT,,,,,,,,,,,,,,,
+AI Agent, What It Does, Previous Hours/Week, New Hours/Week, Hourly Rate, Weekly Savings (),"Monthly
+Savings()",,,,,,,,,
+Company Context Agent,Instant answers to business questions,4,0.5, $ 50.00 , $ 200.00 , $ 800.00 ,,,,,,,,,
+Customer Service AI,AI handles routine client inquiries,6,2, $ 50.00 , $ 300.00 ," $ 1,200.00 ",,,,,,,,,
+Sales Assistant,Pre-call briefings with past quotes,5,1, $ 50.00 , $ 250.00 ," $ 1,000.00 ",,,,,,,,,
+Financial Insights,Real-time financial answers,4,1, $ 50.00 , $ 200.00 , $ 800.00 ,,,,,,,,,
+Proposal Generator,AI drafts proposals from templates,5,1.5, $ 50.00 , $ 250.00 ," $ 1,000.00 ",,,,,,,,,
+Project Kickoff Agent,Auto-generates project setup docs,4,1, $ 50.00 , $ 200.00 , $ 800.00 ,,,,,,,,,
+Timesheet Approval Agent,AI flags timesheet anomalies,3,1.5, $ 50.00 , $ 150.00 , $ 600.00 ,,,,,,,,,
+Client Onboarding Agent,Automated onboarding workflow,4,1, $ 50.00 , $ 200.00 , $ 800.00 ,,,,,,,,,
+Intelligent Semantic Search,Natural language search across data,3,1, $ 50.00 , $ 150.00 , $ 600.00 ,,,,,,,,,
+Meeting Prep Agent,AI-generated meeting briefings,4,1, $ 50.00 , $ 200.00 , $ 800.00 ,,,,,,,,,
+TOTAL MONTHLY AI ENABLEMENT COST:,,,," $ 8,400.00 ",,,,,,,,,,,
+,,,,,,,,,,,,,,,
+SECTION 4: APG INVESTMENT,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+APG Tier,One-Time Investment,Monthly Maintenance (starts Month 7),,,,,,,,,,,,,
+Tier 1," $ 65,000.00 ", $ 999.00 ,,,,,,,,,,,,,
+Tier 2," $ 95,000.00 ", $ 999.00 ,,,,,,,,,,,,,
+Tier 3," $ 125,000.00 ", $ 999.00 ,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+Selected Tier (1/2/3):, 3 ,Selected One-Time Cost:," $ 125,000.00 ",,,,,,,,,,,,
+,,Monthly Maintenance:, $ 999.00 ,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+SECTION 5: SUMMARY DASHBOARD,,,,,,,,,,,,Month,Monthly Waste,APG Investment,
+,,,,,,,,,,,,1," $ 40,400.00 "," $ 125,000.00 ",FALSE
+Metric,Value,,,,,,,,,,,2," $ 80,800.00 "," $ 125,000.00 ",FALSE
+Current Monthly SaaS Waste, $ -   ,,,,,,,,,,,3," $ 121,200.00 "," $ 125,000.00 ",FALSE
+Current Monthly Inefficiency Waste," $ 32,000.00 ",,,,,,,,,,,4," $ 161,600.00 "," $ 125,000.00 ",TRUE
+Current Monthly AI Enablement Waste," $ 8,400.00 ",,,,,,,,,,,5," $ 202,000.00 "," $ 125,000.00 ",TRUE
+Total Monthly Waste," $ 40,400.00 ",,,,,,,,,,,6," $ 242,400.00 "," $ 125,000.00 ",TRUE
+Annual Waste (Year 1)," $ 484,800.00 ",,,,,,,,,,,7," $ 282,800.00 "," $ 125,999.00 ",TRUE
+,,,,,,,,,,,,8," $ 323,200.00 "," $ 126,998.00 ",TRUE
+APG One-Time Investment," $ 125,000.00 ",,,,,,,,,,,9," $ 363,600.00 "," $ 127,997.00 ",TRUE
+APG Monthly Maintenance, $ 999.00 ,,,,,,,,,,,10," $ 404,000.00 "," $ 128,996.00 ",TRUE
+,,,,,,,,,,,,11," $ 444,400.00 "," $ 129,995.00 ",TRUE
+Break-Even Analysis,,,,,,,,,,,,12," $ 484,800.00 "," $ 130,994.00 ",TRUE
+"Month to Break Even
+(Months until APG investment is recovered)", 4 ,,,,,,,,,,,13," $ 525,200.00 "," $ 131,993.00 ",TRUE
+,,,,,,,,,,,,14," $ 565,600.00 "," $ 132,992.00 ",TRUE
+,,,,,,,,,,,,15," $ 606,000.00 "," $ 133,991.00 ",TRUE
+,,,,,,,,,,,,16," $ 646,400.00 "," $ 134,990.00 ",TRUE
+,,,,,,,,,,,,17," $ 686,800.00 "," $ 135,989.00 ",TRUE
+,,,,,,,,,,,,18," $ 727,200.00 "," $ 136,988.00 ",TRUE
+,,,,,,,,,,,,19," $ 767,600.00 "," $ 137,987.00 ",TRUE
+,,,,,,,,,,,,20," $ 808,000.00 "," $ 138,986.00 ",TRUE
+,,,,,,,,,,,,21," $ 848,400.00 "," $ 139,985.00 ",TRUE
+,,,,,,,,,,,,22," $ 888,800.00 "," $ 140,984.00 ",TRUE
+,,,,,,,,,,,,23," $ 929,200.00 "," $ 141,983.00 ",TRUE
+,,,,,,,,,,,,24," $ 969,600.00 "," $ 142,982.00 ",TRUE
+,,,,,,,,,,,,25," $ 1,010,000.00 "," $ 143,981.00 ",TRUE
+,,,,,,,,,,,,26," $ 1,050,400.00 "," $ 144,980.00 ",TRUE
+,,,,,,,,,,,,27," $ 1,090,800.00 "," $ 145,979.00 ",TRUE
+,,,,,,,,,,,,28," $ 1,131,200.00 "," $ 146,978.00 ",TRUE
+,,,,,,,,,,,,29," $ 1,171,600.00 "," $ 147,977.00 ",TRUE
+,,,,,,,,,,,,30," $ 1,212,000.00 "," $ 148,976.00 ",TRUE
+,,,,,,,,,,,,31," $ 1,252,400.00 "," $ 149,975.00 ",TRUE
+,,,,,,,,,,,,32," $ 1,292,800.00 "," $ 150,974.00 ",TRUE
+,,,,,,,,,,,,33," $ 1,333,200.00 "," $ 151,973.00 ",TRUE
+,,,,,,,,,,,,34," $ 1,373,600.00 "," $ 152,972.00 ",TRUE
+,,,,,,,,,,,,35," $ 1,414,000.00 "," $ 153,971.00 ",TRUE
+,,,,,,,,,,,,36," $ 1,454,400.00 "," $ 154,970.00 ",TRUE
