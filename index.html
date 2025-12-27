@@ -1875,8 +1875,9 @@ function goToStep(step) {
     document.getElementById('nextBtn').textContent = 'Start Over';
   }
 
-  // Update height for iframe
-  updateHeight();
+  // Update height for iframe - reset and recalculate after DOM updates
+  lastSentHeight = 0;
+  setTimeout(updateHeight, 50);
 }
 
 // ============================================
