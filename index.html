@@ -645,16 +645,75 @@
     }
 
     /* AI Agent Items */
-    .ai-agent-item {
+    .ai-agents-grid {
       display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 16px;
-      align-items: center;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .ai-agent-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       padding: 16px;
       background: rgba(255,255,255,0.03);
       border-radius: 12px;
-      margin-bottom: 12px;
       border: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ai-agent-item:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .ai-agent-item.active {
+      background: rgba(125, 255, 0, 0.06);
+      border-color: rgba(125, 255, 0, 0.3);
+    }
+
+    .ai-agent-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .ai-agent-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      line-height: 1.3;
+    }
+
+    .ai-agent-item.active .ai-agent-name {
+      color: #7DFF00;
+    }
+
+    .ai-agent-description {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+
+    .ai-agent-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .ai-agent-savings {
+      font-size: 15px;
+      font-weight: 600;
+      color: #7DFF00;
+    }
+
+    .ai-agent-item:not(.active) .ai-agent-savings {
+      color: rgba(255,255,255,0.3);
     }
 
     .ai-toggle {
@@ -1126,21 +1185,36 @@
         font-size: 12px;
       }
 
-      .ai-agent-item {
-        padding: 12px;
-        gap: 12px;
+      .ai-agents-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
 
-      .ai-info h4 {
+      .ai-agent-item {
+        padding: 14px;
+        gap: 10px;
+      }
+
+      .ai-agent-name {
         font-size: 13px;
       }
 
-      .ai-info p {
+      .ai-agent-description {
         font-size: 11px;
       }
 
-      .ai-savings-amount {
-        font-size: 14px;
+      .ai-agent-savings {
+        font-size: 13px;
+      }
+
+      .ai-toggle {
+        width: 40px;
+        height: 22px;
+      }
+
+      .ai-toggle::after {
+        width: 16px;
+        height: 16px;
       }
 
       .results-hero {
@@ -1545,11 +1619,15 @@
     <div class="panel">
       <div class="panel-header">
         <div>
-          <h2 class="panel-title">Inefficiency Waste</h2>
-          <p class="panel-subtitle">Estimate hours your team spends on these inefficient activities</p>
+          <h2 class="panel-title" id="currentWasteTitle">Inefficiency Name</h2>
+          <p class="panel-subtitle" id="wasteProgress">Inefficiency 1 of 5</p>
         </div>
       </div>
-      <div id="wasteCategories"></div>
+      <div id="singleWasteItem"></div>
+      <div class="category-nav-buttons">
+        <button class="category-nav-btn prev" id="prevWasteBtn">← Previous</button>
+        <button class="category-nav-btn next" id="nextWasteBtn">Next →</button>
+      </div>
     </div>
   </div>
 
@@ -1928,6 +2006,9 @@ let checkedCategories = new Set();
 let categorySequence = [];
 let currentCategoryIndex = 0;
 let toolSelectionPhase = 'categories'; // 'categories' or 'tools'
+
+// Waste navigation state
+let currentWasteIndex = 0;
 
 // ============================================
 // INITIALIZATION
@@ -2330,9 +2411,7 @@ function initializeToolCategories() {
 }
 
 function initializeWasteCategories() {
-  const container = document.getElementById('wasteCategories');
-  container.innerHTML = '';
-
+  // Initialize waste data
   wasteCategories.forEach(waste => {
     if (!wasteInputs[waste.id]) {
       wasteInputs[waste.id] = {
@@ -2340,15 +2419,41 @@ function initializeWasteCategories() {
         rate: waste.defaultRate
       };
     }
+  });
 
-    const cost = wasteInputs[waste.id].hours * wasteInputs[waste.id].rate * 4; // Monthly
+  // Add navigation event listeners
+  document.getElementById('prevWasteBtn').addEventListener('click', () => navigateWaste(-1));
+  document.getElementById('nextWasteBtn').addEventListener('click', () => navigateWaste(1));
+}
 
-    const item = document.createElement('div');
-    item.className = 'waste-item';
-    item.innerHTML = `
+function renderCurrentWaste() {
+  const waste = wasteCategories[currentWasteIndex];
+  const total = wasteCategories.length;
+
+  // Update header
+  document.getElementById('currentWasteTitle').textContent = waste.name;
+  document.getElementById('wasteProgress').textContent = `Inefficiency ${currentWasteIndex + 1} of ${total}`;
+
+  // Update nav buttons
+  const prevBtn = document.getElementById('prevWasteBtn');
+  prevBtn.disabled = false;
+  prevBtn.textContent = currentWasteIndex === 0 ? '← Back to Tools' : '← Previous';
+
+  const nextBtn = document.getElementById('nextWasteBtn');
+  if (currentWasteIndex === total - 1) {
+    nextBtn.textContent = 'Finish & Continue →';
+  } else {
+    nextBtn.textContent = 'Next →';
+  }
+
+  // Render the waste item
+  const container = document.getElementById('singleWasteItem');
+  const cost = wasteInputs[waste.id].hours * wasteInputs[waste.id].rate * 4;
+
+  container.innerHTML = `
+    <div class="waste-item">
       <div class="waste-header">
         <div>
-          <div class="waste-title">${waste.name}</div>
           <div class="waste-description">${waste.description}</div>
         </div>
         <div class="waste-cost" id="waste-cost-${waste.id}">$${formatNumber(cost)}/mo</div>
@@ -2359,7 +2464,7 @@ function initializeWasteCategories() {
           <div class="slider-wrapper">
             <input type="range" class="slider" min="0" max="80" value="${wasteInputs[waste.id].hours}"
                    data-waste="${waste.id}" data-type="hours">
-            <div class="slider-value" id="waste-hours-${waste.id}">${wasteInputs[waste.id].hours}h</div>
+            <div class="slider-value">${wasteInputs[waste.id].hours}h</div>
           </div>
         </div>
         <div class="input-group">
@@ -2367,26 +2472,26 @@ function initializeWasteCategories() {
           <div class="slider-wrapper">
             <input type="range" class="slider" min="20" max="150" value="${wasteInputs[waste.id].rate}"
                    data-waste="${waste.id}" data-type="rate">
-            <div class="slider-value" id="waste-rate-${waste.id}">$${wasteInputs[waste.id].rate}</div>
+            <div class="slider-value">$${wasteInputs[waste.id].rate}</div>
           </div>
         </div>
       </div>
-    `;
-    container.appendChild(item);
-  });
+    </div>
+  `;
 
-  // Add event listeners
-  document.querySelectorAll('#wasteCategories .slider').forEach(slider => {
+  // Add event listeners for sliders
+  container.querySelectorAll('.slider').forEach(slider => {
     slider.addEventListener('input', (e) => {
       const wasteId = slider.dataset.waste;
       const type = slider.dataset.type;
       wasteInputs[wasteId][type] = parseInt(slider.value);
 
       // Update display
+      const valueDisplay = slider.nextElementSibling;
       if (type === 'hours') {
-        document.getElementById(`waste-hours-${wasteId}`).textContent = slider.value + 'h';
+        valueDisplay.textContent = slider.value + 'h';
       } else {
-        document.getElementById(`waste-rate-${wasteId}`).textContent = '$' + slider.value;
+        valueDisplay.textContent = '$' + slider.value;
       }
 
       // Update cost
@@ -2398,9 +2503,38 @@ function initializeWasteCategories() {
   });
 }
 
+function navigateWaste(direction) {
+  const newIndex = currentWasteIndex + direction;
+
+  if (newIndex < 0) {
+    // Go back to Step 1 - position at last category
+    currentCategoryIndex = categorySequence.length - 1;
+    goToStep(1);
+    return;
+  }
+
+  if (newIndex >= wasteCategories.length) {
+    // Finished all waste items - go to Step 3
+    goToStep(3);
+    return;
+  }
+
+  currentWasteIndex = newIndex;
+  renderCurrentWaste();
+
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+  window.parent.postMessage({ type: 'scrollToTop' }, '*');
+
+  updateHeight();
+}
+
 function initializeAIAgents() {
   const container = document.getElementById('aiAgents');
-  container.innerHTML = '';
+  container.innerHTML = '<div class="ai-agents-grid" id="aiAgentsGrid"></div>';
+  const grid = document.getElementById('aiAgentsGrid');
 
   aiAgents.forEach(agent => {
     if (selectedAIAgents[agent.id] === undefined) {
@@ -2412,25 +2546,25 @@ function initializeAIAgents() {
     const monthlySavings = weeklySavings * 4;
 
     const item = document.createElement('div');
-    item.className = 'ai-agent-item';
+    item.className = `ai-agent-item ${isActive ? 'active' : ''}`;
+    item.dataset.agent = agent.id;
     item.innerHTML = `
-      <div class="ai-toggle ${isActive ? 'active' : ''}" data-agent="${agent.id}"></div>
-      <div class="ai-info">
-        <h4>${agent.name}</h4>
-        <p>${agent.description}</p>
+      <div class="ai-agent-header">
+        <div class="ai-agent-name">${agent.name}</div>
+        <div class="ai-toggle ${isActive ? 'active' : ''}"></div>
       </div>
-      <div class="ai-savings">
-        <div class="ai-savings-amount">${isActive ? '$' + formatNumber(monthlySavings) : '-'}</div>
-        <div class="ai-savings-label">${isActive ? 'monthly opportunity' : 'disabled'}</div>
+      <div class="ai-agent-description">${agent.description}</div>
+      <div class="ai-agent-footer">
+        <div class="ai-agent-savings">${isActive ? '$' + formatNumber(monthlySavings) + '/mo' : 'Disabled'}</div>
       </div>
     `;
-    container.appendChild(item);
+    grid.appendChild(item);
   });
 
-  // Add event listeners
-  document.querySelectorAll('.ai-toggle').forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const agentId = toggle.dataset.agent;
+  // Add event listeners - click anywhere on card to toggle
+  document.querySelectorAll('.ai-agent-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const agentId = item.dataset.agent;
       selectedAIAgents[agentId] = !selectedAIAgents[agentId];
       initializeAIAgents();
       calculateTotals();
@@ -2623,6 +2757,7 @@ function resetCalculator() {
   categorySequence = [];
   currentCategoryIndex = 0;
   toolSelectionPhase = 'categories';
+  currentWasteIndex = 0;
 
   // Reset waste inputs
   Object.keys(wasteInputs).forEach(key => {
@@ -2691,9 +2826,14 @@ function goToStep(step) {
     }
   }
 
-  // Hide bottom nav buttons on Step 1 (category selection has its own navigation)
+  // Handle Step 2 - render current waste item
+  if (currentStep === 2) {
+    renderCurrentWaste();
+  }
+
+  // Hide bottom nav buttons on Step 1 & 2 (they have their own navigation)
   const navButtons = document.querySelector('.nav-buttons');
-  if (currentStep === 1) {
+  if (currentStep === 1 || currentStep === 2) {
     navButtons.style.display = 'none';
   } else {
     navButtons.style.display = 'flex';
