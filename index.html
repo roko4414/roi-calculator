@@ -775,20 +775,219 @@
     }
 
     /* Responsive adjustments */
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
+      .calculator-container {
+        padding: 16px;
+      }
+
+      .calculator-header h1 {
+        font-size: 22px;
+      }
+
+      .calculator-header p {
+        font-size: 12px;
+      }
+
+      .panel {
+        padding: 16px;
+      }
+
+      .panel-title {
+        font-size: 17px;
+      }
+
+      .category-header {
+        padding: 12px;
+      }
+
+      .category-title {
+        font-size: 13px;
+        gap: 8px;
+      }
+
+      .category-icon {
+        width: 28px;
+        height: 28px;
+      }
+
+      .category-icon svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .category-cost {
+        font-size: 12px;
+      }
+
+      .category-tools {
+        padding: 12px;
+      }
+
       .tool-item {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .tool-name {
+        font-size: 13px;
       }
 
       .tier-select {
         justify-content: flex-start;
       }
 
-      .waste-inputs {
-        grid-template-columns: 1fr;
+      .tier-btn {
+        padding: 5px 8px;
+        font-size: 11px;
       }
 
+      .user-count-input {
+        width: 50px;
+        padding: 5px 8px;
+        font-size: 12px;
+      }
+
+      .tool-cost {
+        font-size: 12px;
+        text-align: left;
+      }
+
+      .waste-item {
+        padding: 14px;
+      }
+
+      .waste-title {
+        font-size: 14px;
+      }
+
+      .waste-description {
+        font-size: 11px;
+      }
+
+      .waste-cost {
+        font-size: 15px;
+      }
+
+      .waste-inputs {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .input-label {
+        font-size: 11px;
+      }
+
+      .slider-value {
+        min-width: 45px;
+        padding: 5px 8px;
+        font-size: 12px;
+      }
+
+      .ai-agent-item {
+        padding: 12px;
+        gap: 12px;
+      }
+
+      .ai-info h4 {
+        font-size: 13px;
+      }
+
+      .ai-info p {
+        font-size: 11px;
+      }
+
+      .ai-savings-amount {
+        font-size: 14px;
+      }
+
+      .results-hero {
+        padding: 24px 16px;
+      }
+
+      .results-hero-amount {
+        font-size: 40px;
+      }
+
+      .results-hero-period {
+        font-size: 14px;
+      }
+
+      .results-card {
+        padding: 14px;
+        gap: 12px;
+      }
+
+      .results-card-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .results-card-value {
+        font-size: 16px;
+      }
+
+      .cta-panel {
+        padding: 32px 16px;
+      }
+
+      .cta-icon {
+        width: 64px;
+        height: 64px;
+      }
+
+      .cta-title {
+        font-size: 24px;
+      }
+
+      .cta-subtitle {
+        font-size: 14px;
+      }
+
+      .cta-stat-value {
+        font-size: 22px;
+      }
+
+      .cta-urgency {
+        padding: 10px 16px;
+        font-size: 12px;
+      }
+
+      .cta-button {
+        padding: 14px 28px;
+        font-size: 14px;
+      }
+
+      .nav-buttons {
+        margin-top: 16px;
+      }
+
+      .nav-btn {
+        padding: 12px 20px;
+        font-size: 13px;
+      }
+
+      .running-total {
+        padding: 12px 16px;
+        margin: 0 -16px -16px;
+        gap: 8px;
+      }
+
+      .running-total-item {
+        flex: 1;
+        min-width: 70px;
+      }
+
+      .running-total-label {
+        font-size: 9px;
+      }
+
+      .running-total-value {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
       .progress-steps {
         gap: 4px;
       }
@@ -800,6 +999,21 @@
 
       .step-indicator .step-label {
         display: none;
+      }
+
+      .step-number {
+        width: 22px;
+        height: 22px;
+        font-size: 11px;
+      }
+
+      .running-total {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .running-total-item {
+        min-width: 45%;
       }
     }
 
@@ -1891,6 +2105,12 @@ function goToStep(step) {
   // Update height for iframe - reset and recalculate after DOM updates
   lastSentHeight = 0;
   setTimeout(updateHeight, 50);
+
+  // Scroll to top - both inside iframe and tell parent
+  // Internal scroll for mobile fallback
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 
   // Tell parent to scroll to top of iframe
   window.parent.postMessage({ type: 'scrollToTop' }, '*');
