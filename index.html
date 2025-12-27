@@ -23,8 +23,6 @@
 
     html, body {
       overflow: hidden !important;
-      overflow-x: hidden !important;
-      overflow-y: hidden !important;
     }
 
     body {
@@ -32,48 +30,46 @@
       background-color: #0a0a0a;
     }
 
-    /* Container */
     .calculator-container {
       width: 100%;
-      max-width: 1000px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 24px;
+      padding: 16px 20px;
     }
 
     /* Header */
     .calculator-header {
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 16px;
     }
 
     .calculator-header h1 {
-      font-size: 28px;
+      font-size: 22px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .calculator-header p {
       color: rgba(255,255,255,0.6);
-      font-size: 14px;
+      font-size: 13px;
     }
 
     /* Progress Steps */
     .progress-steps {
       display: flex;
       justify-content: center;
-      gap: 8px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
     }
 
     .step-indicator {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
+      gap: 6px;
+      padding: 6px 12px;
       background: rgba(255,255,255,0.05);
-      border-radius: 24px;
-      font-size: 13px;
+      border-radius: 20px;
+      font-size: 12px;
       color: rgba(255,255,255,0.5);
       cursor: pointer;
       transition: all 0.2s ease;
@@ -96,15 +92,15 @@
     }
 
     .step-number {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       background: rgba(255,255,255,0.1);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
-      font-size: 12px;
+      font-size: 11px;
     }
 
     .step-indicator.active .step-number,
@@ -117,30 +113,27 @@
     .panel {
       background: rgba(20, 20, 20, 0.9);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      min-height: 380px;
     }
 
     .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
     }
 
     .panel-title {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 600;
     }
 
     .panel-subtitle {
       color: rgba(255,255,255,0.5);
-      font-size: 14px;
-      margin-top: 4px;
+      font-size: 12px;
+      margin-top: 2px;
     }
 
-    /* Step Content */
     .step-content {
       display: none;
     }
@@ -149,161 +142,120 @@
       display: block;
     }
 
-    /* Category Sections */
-    .category-section {
-      margin-bottom: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      overflow: hidden;
+    /* Category Dropdown */
+    .category-dropdown {
+      position: relative;
+      margin-bottom: 12px;
     }
 
-    .category-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px;
-      background: rgba(255,255,255,0.03);
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .category-header:hover {
+    .category-select {
+      width: 100%;
+      padding: 10px 14px;
       background: rgba(255,255,255,0.05);
-    }
-
-    .category-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 600;
-      font-size: 15px;
-    }
-
-    .category-icon {
-      width: 32px;
-      height: 32px;
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 8px;
-      background: rgba(125, 255, 0, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #7DFF00;
-    }
-
-    .category-icon svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .category-badge {
-      background: rgba(125, 255, 0, 0.2);
-      color: #7DFF00;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .category-chevron {
-      color: rgba(255,255,255,0.4);
-      transition: transform 0.2s ease;
-    }
-
-    .category-section.expanded .category-chevron {
-      transform: rotate(180deg);
-    }
-
-    .category-tools {
-      display: none;
-      padding: 16px;
-      background: rgba(0,0,0,0.2);
-    }
-
-    .category-section.expanded .category-tools {
-      display: block;
-    }
-
-    /* Tool Items */
-    .tool-item {
-      display: grid;
-      grid-template-columns: 1fr auto auto auto;
-      gap: 12px;
-      align-items: center;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 8px;
-      background: rgba(255,255,255,0.02);
-      transition: background 0.2s ease;
-    }
-
-    .tool-item:hover {
-      background: rgba(255,255,255,0.05);
-    }
-
-    .tool-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .tool-name-section {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .tool-checkbox {
-      width: 20px;
-      height: 20px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-radius: 4px;
+      color: white;
+      font-size: 14px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-      flex-shrink: 0;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
     }
 
-    .tool-checkbox.checked {
-      background: #7DFF00;
+    .category-select:focus {
+      outline: none;
       border-color: #7DFF00;
     }
 
-    .tool-checkbox.checked::after {
-      content: "✓";
-      color: #0a0a0a;
-      font-weight: 700;
-      font-size: 12px;
-    }
-
-    .tool-name {
-      font-size: 14px;
-      color: rgba(255,255,255,0.8);
-    }
-
-    .tool-item.selected .tool-name {
+    .category-select option {
+      background: #1a1a1a;
       color: white;
     }
 
-    /* Tier Select */
-    .tier-select {
+    /* Tools Grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+      min-height: 200px;
+    }
+
+    @media (max-width: 640px) {
+      .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .tool-card {
+      padding: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tool-card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .tool-card.selected {
+      background: rgba(125, 255, 0, 0.1);
+      border-color: #7DFF00;
+    }
+
+    .tool-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .tool-card-name {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .tool-card-check {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+    }
+
+    .tool-card.selected .tool-card-check {
+      background: #7DFF00;
+      border-color: #7DFF00;
+      color: #0a0a0a;
+    }
+
+    .tool-card-tiers {
       display: flex;
       gap: 4px;
+      margin-bottom: 6px;
     }
 
     .tier-btn {
-      padding: 6px 12px;
+      flex: 1;
+      padding: 4px;
       border: 1px solid rgba(255,255,255,0.15);
       background: transparent;
       color: rgba(255,255,255,0.5);
-      border-radius: 6px;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 10px;
       transition: all 0.2s ease;
     }
 
     .tier-btn:hover {
       border-color: rgba(255,255,255,0.3);
-      color: rgba(255,255,255,0.8);
     }
 
     .tier-btn.active {
@@ -313,168 +265,206 @@
       font-weight: 600;
     }
 
-    .tier-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-
-    /* User Count Input */
-    .user-count {
+    .tool-card-users {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .user-count-input {
-      width: 60px;
-      padding: 6px 10px;
-      border: 1px solid rgba(255,255,255,0.15);
+    .tool-card-users input {
+      width: 45px;
+      padding: 4px 6px;
       background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
       color: white;
-      border-radius: 6px;
-      font-size: 13px;
+      font-size: 11px;
       text-align: center;
     }
 
-    .user-count-input:focus {
+    .tool-card-users input:focus {
       outline: none;
       border-color: #7DFF00;
     }
 
-    .user-count-label {
+    .tool-card-users span {
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .tool-card-cost {
+      font-size: 12px;
+      color: #7DFF00;
+      font-weight: 600;
+      text-align: right;
+      margin-top: 6px;
+    }
+
+    /* Selected Tools Summary */
+    .selected-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 10px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      min-height: 36px;
+      align-items: center;
+    }
+
+    .selected-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: rgba(125, 255, 0, 0.15);
+      border-radius: 12px;
+      font-size: 11px;
+      color: #7DFF00;
+    }
+
+    .selected-chip-remove {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    .selected-chip-remove:hover {
+      opacity: 1;
+    }
+
+    .selected-placeholder {
       font-size: 12px;
       color: rgba(255,255,255,0.4);
     }
 
-    /* Tool Cost Display */
-    .tool-cost {
-      font-size: 13px;
-      color: #7DFF00;
-      font-weight: 600;
-      min-width: 80px;
-      text-align: right;
+    /* Waste Items - Compact */
+    .waste-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
     }
 
-    /* Waste Category */
+    @media (max-width: 640px) {
+      .waste-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .waste-item {
-      padding: 20px;
+      padding: 12px;
       background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      margin-bottom: 12px;
+      border-radius: 8px;
       border: 1px solid rgba(255,255,255,0.06);
     }
 
     .waste-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 16px;
+      align-items: center;
+      margin-bottom: 10px;
     }
 
     .waste-title {
       font-weight: 600;
-      font-size: 15px;
-      margin-bottom: 4px;
-    }
-
-    .waste-description {
       font-size: 13px;
-      color: rgba(255,255,255,0.5);
-      max-width: 400px;
     }
 
     .waste-cost {
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 700;
       color: #7DFF00;
     }
 
     .waste-inputs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .input-group {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    .input-label {
-      font-size: 12px;
-      color: rgba(255,255,255,0.5);
-      font-weight: 500;
-    }
-
-    .slider-wrapper {
+    .input-row {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
+    }
+
+    .input-label {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      min-width: 50px;
     }
 
     .slider {
       flex: 1;
       -webkit-appearance: none;
       appearance: none;
-      height: 6px;
+      height: 4px;
       background: rgba(255,255,255,0.1);
-      border-radius: 3px;
+      border-radius: 2px;
       outline: none;
     }
 
     .slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       background: #7DFF00;
       cursor: pointer;
-      border: 2px solid rgba(0,0,0,0.2);
     }
 
     .slider::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       background: #7DFF00;
       cursor: pointer;
-      border: 2px solid rgba(0,0,0,0.2);
+      border: none;
     }
 
     .slider-value {
-      min-width: 50px;
-      padding: 6px 10px;
+      min-width: 40px;
+      padding: 3px 6px;
       background: rgba(125, 255, 0, 0.15);
       color: #7DFF00;
-      border-radius: 6px;
-      font-size: 13px;
+      border-radius: 4px;
+      font-size: 11px;
       font-weight: 600;
       text-align: center;
     }
 
-    /* AI Agent Items */
-    .ai-agent-item {
+    /* AI Agents - Compact Grid */
+    .ai-grid {
       display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 16px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .ai-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ai-item {
+      display: flex;
       align-items: center;
-      padding: 16px;
+      gap: 10px;
+      padding: 10px;
       background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      margin-bottom: 12px;
+      border-radius: 8px;
       border: 1px solid rgba(255,255,255,0.06);
     }
 
     .ai-toggle {
-      width: 44px;
-      height: 24px;
+      width: 36px;
+      height: 20px;
       background: rgba(255,255,255,0.1);
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
       position: relative;
       transition: background 0.2s ease;
+      flex-shrink: 0;
     }
 
     .ai-toggle.active {
@@ -484,231 +474,223 @@
     .ai-toggle::after {
       content: "";
       position: absolute;
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       background: white;
       border-radius: 50%;
-      top: 3px;
-      left: 3px;
+      top: 2px;
+      left: 2px;
       transition: transform 0.2s ease;
     }
 
     .ai-toggle.active::after {
-      transform: translateX(20px);
+      transform: translateX(16px);
       background: #0a0a0a;
     }
 
-    .ai-info h4 {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 4px;
+    .ai-info {
+      flex: 1;
+      min-width: 0;
     }
 
-    .ai-info p {
+    .ai-name {
       font-size: 12px;
-      color: rgba(255,255,255,0.5);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .ai-savings {
-      text-align: right;
-    }
-
-    .ai-savings-amount {
-      font-size: 16px;
-      font-weight: 700;
-      color: #7DFF00;
-    }
-
-    .ai-savings-label {
       font-size: 11px;
-      color: rgba(255,255,255,0.4);
+      color: #7DFF00;
+      font-weight: 600;
     }
 
-    /* APG Tier Selection */
-    .tier-cards {
+    /* Results - Compact */
+    .results-hero {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 107, 107, 0.2);
+    }
+
+    .results-hero-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 4px;
+    }
+
+    .results-hero-amount {
+      font-size: 36px;
+      font-weight: 800;
+      color: #ff6b6b;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .results-hero-period {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .results-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
-    @media (max-width: 768px) {
-      .tier-cards {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .tier-card {
-      padding: 24px;
+    .results-card {
+      padding: 12px;
       background: rgba(255,255,255,0.03);
-      border: 2px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.06);
       text-align: center;
     }
 
-    .tier-card:hover {
-      border-color: rgba(125, 255, 0, 0.3);
-      background: rgba(255,255,255,0.05);
-    }
-
-    .tier-card.selected {
-      border-color: #7DFF00;
-      background: rgba(125, 255, 0, 0.1);
-    }
-
-    .tier-card-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .tier-card.selected .tier-card-badge {
-      background: #7DFF00;
-      color: #0a0a0a;
-    }
-
-    .tier-card-price {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .tier-card-subtitle {
-      font-size: 13px;
+    .results-card-label {
+      font-size: 11px;
       color: rgba(255,255,255,0.5);
-      margin-bottom: 16px;
+      margin-bottom: 4px;
     }
 
-    .tier-card-maintenance {
-      font-size: 14px;
-      color: rgba(255,255,255,0.6);
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    /* Summary Dashboard */
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    @media (max-width: 640px) {
-      .summary-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .summary-card {
-      padding: 20px;
-      background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .summary-card-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 8px;
-    }
-
-    .summary-card-value {
-      font-size: 28px;
+    .results-card-value {
+      font-size: 16px;
       font-weight: 700;
-    }
-
-    .summary-card-value.green {
-      color: #7DFF00;
-    }
-
-    .summary-card-value.red {
       color: #ff6b6b;
     }
 
-    .summary-card-subtitle {
-      font-size: 12px;
-      color: rgba(255,255,255,0.4);
-      margin-top: 4px;
+    .results-card-value.green {
+      color: #7DFF00;
     }
 
-    /* Chart Container */
-    .chart-container {
+    .results-chart-container {
       background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      padding: 24px;
+      border-radius: 8px;
+      padding: 12px;
       border: 1px solid rgba(255,255,255,0.06);
     }
 
     .chart-title {
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
     }
 
-    #roiChart {
+    #resultsChart {
       width: 100%;
-      height: 340px;
+      height: 140px;
     }
 
-    /* Breakdown */
-    .breakdown-section {
-      margin-top: 24px;
+    /* CTA Panel */
+    .cta-panel {
+      text-align: center;
+      padding: 24px 16px;
     }
 
-    .breakdown-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .breakdown-item {
+    .cta-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(125, 255, 0, 0.15);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .breakdown-item:last-child {
-      border-bottom: none;
-    }
-
-    .breakdown-label {
-      font-size: 14px;
-      color: rgba(255,255,255,0.7);
-    }
-
-    .breakdown-value {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .breakdown-value.negative {
-      color: #ff6b6b;
-    }
-
-    .breakdown-value.positive {
+      justify-content: center;
+      margin: 0 auto 16px;
       color: #7DFF00;
     }
 
-    /* Navigation Buttons */
+    .cta-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .cta-subtitle {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+    }
+
+    .cta-stats {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .cta-stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .cta-stat-value.red {
+      color: #ff6b6b;
+    }
+
+    .cta-stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .cta-urgency {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(255, 107, 107, 0.1);
+      border: 1px solid rgba(255, 107, 107, 0.2);
+      border-radius: 20px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .cta-urgency strong {
+      color: #ff6b6b;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: #7DFF00;
+      color: #0a0a0a;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      margin-bottom: 12px;
+    }
+
+    .cta-button:hover {
+      background: #6ee600;
+      transform: translateY(-2px);
+    }
+
+    .cta-note {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Navigation */
     .nav-buttons {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
-      margin-top: 24px;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
     .nav-btn {
-      padding: 14px 32px;
-      border-radius: 10px;
-      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -738,20 +720,15 @@
       cursor: not-allowed;
     }
 
-    /* Running Total Bar */
+    /* Running Total */
     .running-total {
-      position: sticky;
-      bottom: 0;
-      background: rgba(10, 10, 10, 0.95);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 16px 24px;
-      margin: 0 -24px -24px;
+      background: rgba(20, 20, 20, 0.95);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 10px 16px;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
     }
 
     .running-total-item {
@@ -759,13 +736,13 @@
     }
 
     .running-total-label {
-      font-size: 11px;
+      font-size: 10px;
       color: rgba(255,255,255,0.5);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .running-total-value {
-      font-size: 18px;
+      font-size: 15px;
       font-weight: 700;
       color: #7DFF00;
     }
@@ -774,247 +751,20 @@
       color: #ff6b6b;
     }
 
-    /* Responsive adjustments */
+    /* Responsive */
     @media (max-width: 640px) {
-      .tool-item {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .tier-select {
-        justify-content: flex-start;
-      }
-
-      .waste-inputs {
-        grid-template-columns: 1fr;
-      }
-
-      .progress-steps {
-        gap: 4px;
-      }
-
-      .step-indicator {
-        padding: 6px 10px;
-        font-size: 11px;
-      }
-
       .step-indicator .step-label {
         display: none;
       }
-    }
 
-    /* Category Cost Summary */
-    .category-cost {
-      font-size: 14px;
-      color: #7DFF00;
-      font-weight: 600;
-    }
-
-    /* Results Hero */
-    .results-hero {
-      text-align: center;
-      padding: 40px 20px;
-      background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
-      border-radius: 16px;
-      margin-bottom: 24px;
-      border: 1px solid rgba(255, 107, 107, 0.2);
-    }
-
-    .results-hero-label {
-      font-size: 16px;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 8px;
-    }
-
-    .results-hero-amount {
-      font-size: 56px;
-      font-weight: 800;
-      color: #ff6b6b;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    .results-hero-period {
-      font-size: 18px;
-      color: rgba(255,255,255,0.5);
-    }
-
-    /* Results Cards */
-    .results-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    @media (max-width: 768px) {
       .results-cards {
         grid-template-columns: 1fr;
       }
-    }
 
-    .results-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 20px;
-      background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .results-card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.6);
-    }
-
-    .results-card-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 4px;
-    }
-
-    .results-card-value {
-      font-size: 20px;
-      font-weight: 700;
-      color: #ff6b6b;
-    }
-
-    .results-card-value.green {
-      color: #7DFF00;
-    }
-
-    .results-chart-container {
-      background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    #resultsChart {
-      width: 100%;
-      height: 280px;
-    }
-
-    /* CTA Panel */
-    .cta-panel {
-      text-align: center;
-      padding: 48px 24px;
-    }
-
-    .cta-header {
-      margin-bottom: 32px;
-    }
-
-    .cta-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: rgba(125, 255, 0, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      color: #7DFF00;
-    }
-
-    .cta-title {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .cta-subtitle {
-      font-size: 16px;
-      color: rgba(255,255,255,0.6);
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .cta-stats {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-
-    .cta-stat {
-      text-align: center;
-    }
-
-    .cta-stat-value {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .cta-stat-value.red {
-      color: #ff6b6b;
-    }
-
-    .cta-stat-value.green {
-      color: #7DFF00;
-    }
-
-    .cta-stat-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-    }
-
-    .cta-urgency {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      background: rgba(255, 107, 107, 0.1);
-      border: 1px solid rgba(255, 107, 107, 0.2);
-      border-radius: 24px;
-      margin-bottom: 32px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.8);
-    }
-
-    .cta-urgency-icon {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-    }
-
-    .cta-urgency strong {
-      color: #ff6b6b;
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 18px 40px;
-      background: #7DFF00;
-      color: #0a0a0a;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 12px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      margin-bottom: 16px;
-    }
-
-    .cta-button:hover {
-      background: #6ee600;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(125, 255, 0, 0.3);
-    }
-
-    .cta-note {
-      font-size: 13px;
-      color: rgba(255,255,255,0.4);
+      .cta-stats {
+        flex-direction: column;
+        gap: 12px;
+      }
     }
   </style>
 </head>
@@ -1025,7 +775,6 @@
     <p>Calculate your losses</p>
   </div>
 
-  <!-- Progress Steps -->
   <div class="progress-steps">
     <div class="step-indicator active" data-step="1">
       <span class="step-number">1</span>
@@ -1053,12 +802,25 @@
   <div class="step-content active" id="step1">
     <div class="panel">
       <div class="panel-header">
-        <div>
-          <h2 class="panel-title">Current SaaS Tools</h2>
-          <p class="panel-subtitle">Select the tools your team currently uses and specify pricing tier & users</p>
+        <h2 class="panel-title">Select Your SaaS Tools</h2>
+        <p class="panel-subtitle">Choose a category and select the tools your team uses</p>
+      </div>
+
+      <div class="category-dropdown">
+        <select class="category-select" id="categorySelect">
+          <option value="">Choose a category...</option>
+        </select>
+      </div>
+
+      <div class="tools-grid" id="toolsGrid">
+        <div style="grid-column: 1/-1; text-align: center; color: rgba(255,255,255,0.4); padding: 40px; font-size: 13px;">
+          Select a category above to see available tools
         </div>
       </div>
-      <div id="toolCategories"></div>
+
+      <div class="selected-summary" id="selectedSummary">
+        <span class="selected-placeholder">No tools selected yet</span>
+      </div>
     </div>
   </div>
 
@@ -1066,12 +828,10 @@
   <div class="step-content" id="step2">
     <div class="panel">
       <div class="panel-header">
-        <div>
-          <h2 class="panel-title">Inefficiency Waste</h2>
-          <p class="panel-subtitle">Estimate hours your team spends on these inefficient activities</p>
-        </div>
+        <h2 class="panel-title">Inefficiency Waste</h2>
+        <p class="panel-subtitle">Estimate hours your team spends on these activities</p>
       </div>
-      <div id="wasteCategories"></div>
+      <div class="waste-grid" id="wasteGrid"></div>
     </div>
   </div>
 
@@ -1079,23 +839,19 @@
   <div class="step-content" id="step3">
     <div class="panel">
       <div class="panel-header">
-        <div>
-          <h2 class="panel-title">AI Enablement Opportunities</h2>
-          <p class="panel-subtitle">Select AI agents that could help automate your workflows</p>
-        </div>
+        <h2 class="panel-title">AI Enablement Opportunities</h2>
+        <p class="panel-subtitle">Toggle AI agents that could automate your workflows</p>
       </div>
-      <div id="aiAgents"></div>
+      <div class="ai-grid" id="aiGrid"></div>
     </div>
   </div>
 
-  <!-- Step 4: Your Results -->
+  <!-- Step 4: Results -->
   <div class="step-content" id="step4">
     <div class="panel">
       <div class="panel-header">
-        <div>
-          <h2 class="panel-title">Your Results</h2>
-          <p class="panel-subtitle">Here's what your current setup is costing you</p>
-        </div>
+        <h2 class="panel-title">Your Results</h2>
+        <p class="panel-subtitle">Here's what your current setup is costing you</p>
       </div>
 
       <div class="results-hero">
@@ -1106,31 +862,16 @@
 
       <div class="results-cards">
         <div class="results-card">
-          <div class="results-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-          </div>
-          <div class="results-card-content">
-            <div class="results-card-label">SaaS Tools</div>
-            <div class="results-card-value" id="resultsToolsCost">$0/mo</div>
-          </div>
+          <div class="results-card-label">SaaS Tools</div>
+          <div class="results-card-value" id="resultsToolsCost">$0/mo</div>
         </div>
         <div class="results-card">
-          <div class="results-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          </div>
-          <div class="results-card-content">
-            <div class="results-card-label">Inefficiency Waste</div>
-            <div class="results-card-value" id="resultsWasteCost">$0/mo</div>
-          </div>
+          <div class="results-card-label">Inefficiency</div>
+          <div class="results-card-value" id="resultsWasteCost">$0/mo</div>
         </div>
         <div class="results-card">
-          <div class="results-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          </div>
-          <div class="results-card-content">
-            <div class="results-card-label">AI Savings Potential</div>
-            <div class="results-card-value green" id="resultsAISavings">+$0/mo</div>
-          </div>
+          <div class="results-card-label">AI Savings</div>
+          <div class="results-card-value green" id="resultsAISavings">+$0/mo</div>
         </div>
       </div>
 
@@ -1141,16 +882,14 @@
     </div>
   </div>
 
-  <!-- Step 5: Get Your Quote -->
+  <!-- Step 5: CTA -->
   <div class="step-content" id="step5">
     <div class="panel cta-panel">
-      <div class="cta-header">
-        <div class="cta-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        </div>
-        <h2 class="cta-title">Let's Fix This Together</h2>
-        <p class="cta-subtitle">Book a free consultation to see how we can eliminate your waste</p>
+      <div class="cta-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
       </div>
+      <h2 class="cta-title">Let's Fix This Together</h2>
+      <p class="cta-subtitle">Book a free consultation to eliminate your waste</p>
 
       <div class="cta-stats">
         <div class="cta-stat">
@@ -1164,26 +903,24 @@
       </div>
 
       <div class="cta-urgency">
-        <svg class="cta-urgency-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12M6 22h12M12 6v4l2 2M6 6a6 6 0 0 0 6 6 6 6 0 0 0 6-6M6 18a6 6 0 0 1 6-6 6 6 0 0 1 6 6"></path></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h12M6 22h12M12 6v4l2 2M6 6a6 6 0 0 0 6 6 6 6 0 0 0 6-6M6 18a6 6 0 0 1 6-6 6 6 0 0 1 6 6"></path></svg>
         <span>Every month you wait costs you <strong id="ctaUrgencyAmount">$0</strong></span>
       </div>
 
-      <a href="#" class="cta-button" id="ctaButton">
+      <a href="#" class="cta-button">
         Book Your Free Consultation
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </a>
 
       <p class="cta-note">No commitment required. We'll review your results and show you a custom solution.</p>
     </div>
   </div>
 
-  <!-- Navigation Buttons -->
   <div class="nav-buttons">
     <button class="nav-btn secondary" id="prevBtn" disabled>Back</button>
     <button class="nav-btn primary" id="nextBtn">Next Step</button>
   </div>
 
-  <!-- Running Total -->
   <div class="running-total">
     <div class="running-total-item">
       <div class="running-total-label">SaaS Cost/mo</div>
@@ -1205,535 +942,453 @@
 </div>
 
 <script>
-// ============================================
 // DATA
-// ============================================
-
-// SVG Icons
-const icons = {
-  crm: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
-  project: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>`,
-  form: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
-  social: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>`,
-  dashboard: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
-  support: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>`,
-  invoice: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
-  time: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
-  communication: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`,
-  automation: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
-  document: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>`,
-  signature: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>`,
-  calendar: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
-  marketing: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>`,
-  collaboration: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
-  hr: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>`
-};
-
 const toolsData = {
-  "CRM & Sales": {
-    icon: icons.crm,
-    tools: [
-      { name: "HubSpot", tiers: [15, 50, 125] },
-      { name: "Salesforce", tiers: [25, 75, 150] },
-      { name: "Pipedrive", tiers: [14, 29, 49] },
-      { name: "Zoho CRM", tiers: [14, 23, 40] },
-      { name: "Copper", tiers: [29, 69, 134] },
-      { name: "Close", tiers: [29, 69, 129] },
-      { name: "Monday Sales CRM", tiers: [12, 17, 28] }
-    ]
-  },
-  "Project Management": {
-    icon: icons.project,
-    tools: [
-      { name: "Asana", tiers: [10.99, 24.99, 50] },
-      { name: "Monday.com", tiers: [9, 12, 19] },
-      { name: "ClickUp", tiers: [7, 12, 19] },
-      { name: "Trello", tiers: [5, 10, 17.50] },
-      { name: "Wrike", tiers: [9.80, 24.80, 50] },
-      { name: "Smartsheet", tiers: [9, 19, 39] }
-    ]
-  },
-  "Form Tools": {
-    icon: icons.form,
-    tools: [
-      { name: "Typeform", tiers: [25, 50, 83] },
-      { name: "Jotform", tiers: [34, 39, 99] },
-      { name: "Wufoo", tiers: [14, 29, 74] },
-      { name: "Cognito Forms", tiers: [10, 15, 25] },
-      { name: "SurveyMonkey", tiers: [25, 35, 75] },
-      { name: "Formstack", tiers: [50, 83, 208] }
-    ]
-  },
-  "Social Media": {
-    icon: icons.social,
-    tools: [
-      { name: "Buffer", tiers: [6, 12, 120] },
-      { name: "Hootsuite", tiers: [99, 249, 739] },
-      { name: "Later", tiers: [18, 40, 80] },
-      { name: "Sprout Social", tiers: [249, 399, 499] },
-      { name: "SocialBee", tiers: [29, 49, 99] },
-      { name: "Planoly", tiers: [13, 23, 43] }
-    ]
-  },
-  "Dashboards & BI": {
-    icon: icons.dashboard,
-    tools: [
-      { name: "Tableau", tiers: [70, 70, 70] },
-      { name: "Power BI", tiers: [10, 20, 20] },
-      { name: "Metabase", tiers: [0, 85, 85] },
-      { name: "Databox", tiers: [47, 135, 231] },
-      { name: "Klipfolio", tiers: [49, 199, 799] }
-    ]
-  },
-  "Support & Help Desk": {
-    icon: icons.support,
-    tools: [
-      { name: "Zendesk", tiers: [19, 49, 99] },
-      { name: "Freshdesk", tiers: [15, 49, 79] },
-      { name: "Help Scout", tiers: [20, 40, 65] },
-      { name: "Intercom", tiers: [74, 119, 219] },
-      { name: "Front", tiers: [19, 49, 99] },
-      { name: "Groove", tiers: [12, 20, 40] }
-    ]
-  },
-  "Invoicing & Accounting": {
-    icon: icons.invoice,
-    tools: [
-      { name: "QuickBooks Online", tiers: [30, 60, 90] },
-      { name: "Xero", tiers: [13, 37, 70] },
-      { name: "FreshBooks", tiers: [17, 30, 55] },
-      { name: "Zoho Books", tiers: [15, 40, 60] }
-    ]
-  },
-  "Time Tracking": {
-    icon: icons.time,
-    tools: [
-      { name: "Toggl Track", tiers: [10, 20, 30] },
-      { name: "Harvest", tiers: [12, 12, 12] },
-      { name: "Clockify", tiers: [0, 4.99, 9.99] },
-      { name: "Timely", tiers: [9, 16, 22] },
-      { name: "Hubstaff", tiers: [7, 10, 20] }
-    ]
-  },
-  "Communication": {
-    icon: icons.communication,
-    tools: [
-      { name: "Slack", tiers: [7.25, 12.50, 15] },
-      { name: "Microsoft Teams", tiers: [6, 12.50, 22] },
-      { name: "Zoom", tiers: [12.50, 16.67, 25] },
-      { name: "Google Workspace", tiers: [6, 12, 18] },
-      { name: "Microsoft 365", tiers: [6, 12.50, 22] }
-    ]
-  },
-  "Automation": {
-    icon: icons.automation,
-    tools: [
-      { name: "Zapier", tiers: [19.99, 49, 299] },
-      { name: "Make", tiers: [9, 16, 29] },
-      { name: "n8n", tiers: [0, 20, 50] }
-    ]
-  },
-  "Document Management": {
-    icon: icons.document,
-    tools: [
-      { name: "Google Drive", tiers: [6, 12, 18] },
-      { name: "Dropbox", tiers: [12, 18, 24] },
-      { name: "OneDrive", tiers: [6, 12.50, 22] },
-      { name: "Box", tiers: [5, 15, 25] }
-    ]
-  },
-  "E-signature": {
-    icon: icons.signature,
-    tools: [
-      { name: "DocuSign", tiers: [10, 25, 40] },
-      { name: "PandaDoc", tiers: [19, 49, 65] },
-      { name: "HelloSign", tiers: [15, 25, 40] },
-      { name: "SignNow", tiers: [8, 15, 25] }
-    ]
-  },
-  "Scheduling": {
-    icon: icons.calendar,
-    tools: [
-      { name: "Calendly", tiers: [8, 12, 16] },
-      { name: "Acuity", tiers: [16, 27, 49] }
-    ]
-  },
-  "Marketing": {
-    icon: icons.marketing,
-    tools: [
-      { name: "Mailchimp", tiers: [13, 20, 350] },
-      { name: "Constant Contact", tiers: [12, 35, 80] },
-      { name: "ConvertKit", tiers: [9, 25, 50] }
-    ]
-  },
-  "Collaboration & Wikis": {
-    icon: icons.collaboration,
-    tools: [
-      { name: "Coda", tiers: [10, 30, 50] },
-      { name: "Confluence", tiers: [5.75, 11, 22.05] },
-      { name: "Guru", tiers: [5, 10, 20] },
-      { name: "Slite", tiers: [8, 12.50, 15] }
-    ]
-  },
-  "HR & Payroll": {
-    icon: icons.hr,
-    tools: [
-      { name: "Gusto", tiers: [40, 80, 120] },
-      { name: "Rippling", tiers: [8, 16, 25] }
-    ]
-  }
+  "CRM & Sales": [
+    { name: "HubSpot", tiers: [15, 50, 125] },
+    { name: "Salesforce", tiers: [25, 75, 150] },
+    { name: "Pipedrive", tiers: [14, 29, 49] },
+    { name: "Zoho CRM", tiers: [14, 23, 40] },
+    { name: "Copper", tiers: [29, 69, 134] },
+    { name: "Close", tiers: [29, 69, 129] }
+  ],
+  "Project Management": [
+    { name: "Asana", tiers: [11, 25, 50] },
+    { name: "Monday.com", tiers: [9, 12, 19] },
+    { name: "ClickUp", tiers: [7, 12, 19] },
+    { name: "Trello", tiers: [5, 10, 18] },
+    { name: "Wrike", tiers: [10, 25, 50] },
+    { name: "Smartsheet", tiers: [9, 19, 39] }
+  ],
+  "Form Tools": [
+    { name: "Typeform", tiers: [25, 50, 83] },
+    { name: "Jotform", tiers: [34, 39, 99] },
+    { name: "SurveyMonkey", tiers: [25, 35, 75] },
+    { name: "Formstack", tiers: [50, 83, 208] },
+    { name: "Cognito Forms", tiers: [10, 15, 25] },
+    { name: "Wufoo", tiers: [14, 29, 74] }
+  ],
+  "Social Media": [
+    { name: "Buffer", tiers: [6, 12, 120] },
+    { name: "Hootsuite", tiers: [99, 249, 739] },
+    { name: "Later", tiers: [18, 40, 80] },
+    { name: "Sprout Social", tiers: [249, 399, 499] },
+    { name: "SocialBee", tiers: [29, 49, 99] },
+    { name: "Planoly", tiers: [13, 23, 43] }
+  ],
+  "Dashboards & BI": [
+    { name: "Tableau", tiers: [70, 70, 70] },
+    { name: "Power BI", tiers: [10, 20, 20] },
+    { name: "Metabase", tiers: [0, 85, 85] },
+    { name: "Databox", tiers: [47, 135, 231] },
+    { name: "Klipfolio", tiers: [49, 199, 799] }
+  ],
+  "Support & Help Desk": [
+    { name: "Zendesk", tiers: [19, 49, 99] },
+    { name: "Freshdesk", tiers: [15, 49, 79] },
+    { name: "Help Scout", tiers: [20, 40, 65] },
+    { name: "Intercom", tiers: [74, 119, 219] },
+    { name: "Front", tiers: [19, 49, 99] },
+    { name: "Groove", tiers: [12, 20, 40] }
+  ],
+  "Invoicing & Accounting": [
+    { name: "QuickBooks", tiers: [30, 60, 90] },
+    { name: "Xero", tiers: [13, 37, 70] },
+    { name: "FreshBooks", tiers: [17, 30, 55] },
+    { name: "Zoho Books", tiers: [15, 40, 60] }
+  ],
+  "Time Tracking": [
+    { name: "Toggl Track", tiers: [10, 20, 30] },
+    { name: "Harvest", tiers: [12, 12, 12] },
+    { name: "Clockify", tiers: [0, 5, 10] },
+    { name: "Timely", tiers: [9, 16, 22] },
+    { name: "Hubstaff", tiers: [7, 10, 20] }
+  ],
+  "Communication": [
+    { name: "Slack", tiers: [7, 13, 15] },
+    { name: "Microsoft Teams", tiers: [6, 13, 22] },
+    { name: "Zoom", tiers: [13, 17, 25] },
+    { name: "Google Workspace", tiers: [6, 12, 18] }
+  ],
+  "Automation": [
+    { name: "Zapier", tiers: [20, 49, 299] },
+    { name: "Make", tiers: [9, 16, 29] },
+    { name: "n8n", tiers: [0, 20, 50] }
+  ],
+  "Document Management": [
+    { name: "Google Drive", tiers: [6, 12, 18] },
+    { name: "Dropbox", tiers: [12, 18, 24] },
+    { name: "OneDrive", tiers: [6, 13, 22] },
+    { name: "Box", tiers: [5, 15, 25] }
+  ],
+  "E-signature": [
+    { name: "DocuSign", tiers: [10, 25, 40] },
+    { name: "PandaDoc", tiers: [19, 49, 65] },
+    { name: "HelloSign", tiers: [15, 25, 40] },
+    { name: "SignNow", tiers: [8, 15, 25] }
+  ],
+  "Scheduling": [
+    { name: "Calendly", tiers: [8, 12, 16] },
+    { name: "Acuity", tiers: [16, 27, 49] }
+  ],
+  "Marketing": [
+    { name: "Mailchimp", tiers: [13, 20, 350] },
+    { name: "Constant Contact", tiers: [12, 35, 80] },
+    { name: "ConvertKit", tiers: [9, 25, 50] }
+  ],
+  "Collaboration & Wikis": [
+    { name: "Notion", tiers: [8, 15, 20] },
+    { name: "Confluence", tiers: [6, 11, 22] },
+    { name: "Coda", tiers: [10, 30, 50] },
+    { name: "Slite", tiers: [8, 13, 15] }
+  ],
+  "HR & Payroll": [
+    { name: "Gusto", tiers: [40, 80, 120] },
+    { name: "Rippling", tiers: [8, 16, 25] }
+  ]
 };
 
 const wasteCategories = [
-  {
-    id: "ductTape",
-    name: "Duct-tape Labor",
-    description: "Hours copying data between tools, fixing automations, updating multiple systems",
-    defaultHours: 10,
-    defaultRate: 40
-  },
-  {
-    id: "emailArchaeology",
-    name: "Email Archaeology",
-    description: "Hours searching emails for client info, attachments, or project history",
-    defaultHours: 10,
-    defaultRate: 40
-  },
-  {
-    id: "spreadsheetHell",
-    name: "Spreadsheet Hell",
-    description: "Hours updating/reconciling spreadsheets and dealing with version control issues",
-    defaultHours: 10,
-    defaultRate: 40
-  },
-  {
-    id: "fileHunting",
-    name: "File Hunting",
-    description: "Hours searching for the latest version of files across systems",
-    defaultHours: 10,
-    defaultRate: 40
-  },
-  {
-    id: "statusMeetings",
-    name: "Status Meetings",
-    description: "Hours in meetings that exist only because there's no dashboard or single source of truth",
-    defaultHours: 10,
-    defaultRate: 40
-  }
+  { id: "ductTape", name: "Duct-tape Labor", defaultHours: 10, defaultRate: 40 },
+  { id: "emailArchaeology", name: "Email Archaeology", defaultHours: 10, defaultRate: 40 },
+  { id: "spreadsheetHell", name: "Spreadsheet Hell", defaultHours: 10, defaultRate: 40 },
+  { id: "fileHunting", name: "File Hunting", defaultHours: 10, defaultRate: 40 },
+  { id: "statusMeetings", name: "Status Meetings", defaultHours: 10, defaultRate: 40 }
 ];
 
 const aiAgents = [
-  { id: "contextAgent", name: "Company Context Agent", description: "Instant answers to business questions", prevHours: 4, newHours: 0.5, rate: 50 },
-  { id: "customerService", name: "Customer Service AI", description: "AI handles routine client inquiries", prevHours: 6, newHours: 2, rate: 50 },
-  { id: "salesAssistant", name: "Sales Assistant", description: "Pre-call briefings with past quotes and history", prevHours: 5, newHours: 1, rate: 50 },
-  { id: "financialInsights", name: "Financial Insights", description: "Real-time financial answers and reports", prevHours: 4, newHours: 1, rate: 50 },
-  { id: "proposalGenerator", name: "Proposal Generator", description: "AI drafts proposals from templates", prevHours: 5, newHours: 1.5, rate: 50 },
-  { id: "projectKickoff", name: "Project Kickoff Agent", description: "Auto-generates project setup docs", prevHours: 4, newHours: 1, rate: 50 },
-  { id: "timesheetApproval", name: "Timesheet Approval Agent", description: "AI flags timesheet anomalies", prevHours: 3, newHours: 1.5, rate: 50 },
-  { id: "clientOnboarding", name: "Client Onboarding Agent", description: "Automated onboarding workflow", prevHours: 4, newHours: 1, rate: 50 },
-  { id: "semanticSearch", name: "Intelligent Semantic Search", description: "Natural language search across all data", prevHours: 3, newHours: 1, rate: 50 },
-  { id: "meetingPrep", name: "Meeting Prep Agent", description: "AI-generated meeting briefings", prevHours: 4, newHours: 1, rate: 50 }
+  { id: "contextAgent", name: "Company Context Agent", prevHours: 4, newHours: 0.5, rate: 50 },
+  { id: "customerService", name: "Customer Service AI", prevHours: 6, newHours: 2, rate: 50 },
+  { id: "salesAssistant", name: "Sales Assistant", prevHours: 5, newHours: 1, rate: 50 },
+  { id: "financialInsights", name: "Financial Insights", prevHours: 4, newHours: 1, rate: 50 },
+  { id: "proposalGenerator", name: "Proposal Generator", prevHours: 5, newHours: 1.5, rate: 50 },
+  { id: "projectKickoff", name: "Project Kickoff Agent", prevHours: 4, newHours: 1, rate: 50 },
+  { id: "timesheetApproval", name: "Timesheet Approval", prevHours: 3, newHours: 1.5, rate: 50 },
+  { id: "clientOnboarding", name: "Client Onboarding", prevHours: 4, newHours: 1, rate: 50 },
+  { id: "semanticSearch", name: "Semantic Search", prevHours: 3, newHours: 1, rate: 50 },
+  { id: "meetingPrep", name: "Meeting Prep Agent", prevHours: 4, newHours: 1, rate: 50 }
 ];
 
-// ============================================
 // STATE
-// ============================================
-
 let currentStep = 1;
 let selectedTools = {};
 let wasteInputs = {};
 let selectedAIAgents = {};
-let expandedCategories = new Set();
+let currentCategory = '';
 
-// ============================================
 // INITIALIZATION
-// ============================================
-
 document.addEventListener('DOMContentLoaded', function() {
-  initializeToolCategories();
-  initializeWasteCategories();
-  initializeAIAgents();
+  initializeCategoryDropdown();
+  initializeWasteGrid();
+  initializeAIGrid();
   initializeNavigation();
   calculateTotals();
 });
 
-function initializeToolCategories() {
-  const container = document.getElementById('toolCategories');
-  container.innerHTML = '';
-
-  Object.entries(toolsData).forEach(([category, data]) => {
-    const categoryId = category.replace(/\s+/g, '-').toLowerCase();
-
-    const section = document.createElement('div');
-    section.className = `category-section${expandedCategories.has(categoryId) ? ' expanded' : ''}`;
-    section.id = `category-${categoryId}`;
-
-    const selectedCount = Object.values(selectedTools)
-      .filter(t => t.category === category && t.selected).length;
-
-    section.innerHTML = `
-      <div class="category-header">
-        <div class="category-title">
-          <span class="category-icon">${data.icon}</span>
-          <span>${category}</span>
-          ${selectedCount > 0 ? `<span class="category-badge">${selectedCount} selected</span>` : ''}
-        </div>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <span class="category-cost" id="cost-${categoryId}">$0/mo</span>
-          <span class="category-chevron">▼</span>
-        </div>
-      </div>
-      <div class="category-tools">
-        ${data.tools.map(tool => {
-          const toolId = `${categoryId}-${tool.name.replace(/\s+/g, '-').toLowerCase()}`;
-          const toolState = selectedTools[toolId] || { selected: false, tier: 1, users: 5 };
-          const isSelected = toolState.selected;
-          const selectedTier = toolState.tier;
-          const users = toolState.users;
-          const cost = isSelected ? tool.tiers[selectedTier - 1] * users : 0;
-
-          return `
-            <div class="tool-item ${isSelected ? 'selected' : ''}" data-tool-id="${toolId}">
-              <div class="tool-name-section">
-                <div class="tool-checkbox ${isSelected ? 'checked' : ''}" data-tool="${toolId}"></div>
-                <span class="tool-name">${tool.name}</span>
-              </div>
-              <div class="tier-select">
-                ${tool.tiers.map((price, i) => `
-                  <button class="tier-btn ${selectedTier === i + 1 ? 'active' : ''}"
-                          data-tool="${toolId}"
-                          data-tier="${i + 1}"
-                          ${!isSelected ? 'disabled' : ''}>
-                    T${i + 1} $${price}
-                  </button>
-                `).join('')}
-              </div>
-              <div class="user-count">
-                <input type="number" class="user-count-input" value="${users}" min="1" max="1000"
-                       data-tool="${toolId}" ${!isSelected ? 'disabled' : ''}>
-                <span class="user-count-label">users</span>
-              </div>
-              <div class="tool-cost">${isSelected ? '$' + cost.toFixed(0) + '/mo' : '-'}</div>
-            </div>
-          `;
-        }).join('')}
-      </div>
-    `;
-
-    // Store tool data for calculations
-    data.tools.forEach(tool => {
-      const toolId = `${categoryId}-${tool.name.replace(/\s+/g, '-').toLowerCase()}`;
-      if (!selectedTools[toolId]) {
-        selectedTools[toolId] = {
-          category: category,
-          name: tool.name,
-          tiers: tool.tiers,
-          selected: false,
-          tier: 1,
-          users: 5
-        };
-      }
-    });
-
-    container.appendChild(section);
+function initializeCategoryDropdown() {
+  const select = document.getElementById('categorySelect');
+  Object.keys(toolsData).forEach(category => {
+    const option = document.createElement('option');
+    option.value = category;
+    option.textContent = category;
+    select.appendChild(option);
   });
 
-  // Add event listeners
-  document.querySelectorAll('.category-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const section = header.parentElement;
-      const categoryId = section.id.replace('category-', '');
-      if (expandedCategories.has(categoryId)) {
-        expandedCategories.delete(categoryId);
-        section.classList.remove('expanded');
-      } else {
-        expandedCategories.add(categoryId);
-        section.classList.add('expanded');
-      }
-    });
-  });
-
-  document.querySelectorAll('.tool-checkbox').forEach(checkbox => {
-    checkbox.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const toolId = checkbox.dataset.tool;
-      selectedTools[toolId].selected = !selectedTools[toolId].selected;
-      initializeToolCategories();
-      calculateTotals();
-    });
-  });
-
-  document.querySelectorAll('.tier-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const toolId = btn.dataset.tool;
-      const tier = parseInt(btn.dataset.tier);
-      selectedTools[toolId].tier = tier;
-      initializeToolCategories();
-      calculateTotals();
-    });
-  });
-
-  document.querySelectorAll('.user-count-input').forEach(input => {
-    input.addEventListener('change', (e) => {
-      const toolId = input.dataset.tool;
-      selectedTools[toolId].users = parseInt(input.value) || 1;
-      initializeToolCategories();
-      calculateTotals();
-    });
-    input.addEventListener('click', (e) => e.stopPropagation());
-  });
-
-  // Update category costs
-  Object.entries(toolsData).forEach(([category, data]) => {
-    const categoryId = category.replace(/\s+/g, '-').toLowerCase();
-    let categoryCost = 0;
-    data.tools.forEach(tool => {
-      const toolId = `${categoryId}-${tool.name.replace(/\s+/g, '-').toLowerCase()}`;
-      const toolState = selectedTools[toolId];
-      if (toolState && toolState.selected) {
-        categoryCost += tool.tiers[toolState.tier - 1] * toolState.users;
-      }
-    });
-    const costEl = document.getElementById(`cost-${categoryId}`);
-    if (costEl) {
-      costEl.textContent = categoryCost > 0 ? `$${formatNumber(categoryCost)}/mo` : '$0/mo';
-    }
+  select.addEventListener('change', (e) => {
+    currentCategory = e.target.value;
+    renderToolsGrid();
   });
 }
 
-function initializeWasteCategories() {
-  const container = document.getElementById('wasteCategories');
-  container.innerHTML = '';
+function renderToolsGrid() {
+  const grid = document.getElementById('toolsGrid');
+
+  if (!currentCategory) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: rgba(255,255,255,0.4); padding: 40px; font-size: 13px;">
+      Select a category above to see available tools
+    </div>`;
+    return;
+  }
+
+  const tools = toolsData[currentCategory];
+  grid.innerHTML = tools.map(tool => {
+    const toolId = `${currentCategory}-${tool.name}`.replace(/\s+/g, '-').toLowerCase();
+    const state = selectedTools[toolId] || { selected: false, tier: 1, users: 5 };
+    const cost = state.selected ? tool.tiers[state.tier - 1] * state.users : 0;
+
+    return `
+      <div class="tool-card ${state.selected ? 'selected' : ''}" data-tool-id="${toolId}">
+        <div class="tool-card-header">
+          <span class="tool-card-name">${tool.name}</span>
+          <span class="tool-card-check">${state.selected ? '✓' : ''}</span>
+        </div>
+        <div class="tool-card-tiers">
+          ${tool.tiers.map((price, i) => `
+            <button class="tier-btn ${state.tier === i + 1 ? 'active' : ''}" data-tier="${i + 1}">$${price}</button>
+          `).join('')}
+        </div>
+        <div class="tool-card-users">
+          <input type="number" value="${state.users}" min="1" max="500" data-tool="${toolId}">
+          <span>users</span>
+        </div>
+        <div class="tool-card-cost">${state.selected ? '$' + cost + '/mo' : '-'}</div>
+      </div>
+    `;
+  }).join('');
+
+  // Store tool data
+  tools.forEach(tool => {
+    const toolId = `${currentCategory}-${tool.name}`.replace(/\s+/g, '-').toLowerCase();
+    if (!selectedTools[toolId]) {
+      selectedTools[toolId] = { name: tool.name, tiers: tool.tiers, selected: false, tier: 1, users: 5 };
+    }
+  });
+
+  // Event listeners
+  grid.querySelectorAll('.tool-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.classList.contains('tier-btn') || e.target.tagName === 'INPUT') return;
+      const toolId = card.dataset.toolId;
+      selectedTools[toolId].selected = !selectedTools[toolId].selected;
+      renderToolsGrid();
+      updateSelectedSummary();
+      calculateTotals();
+    });
+  });
+
+  grid.querySelectorAll('.tier-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const card = btn.closest('.tool-card');
+      const toolId = card.dataset.toolId;
+      selectedTools[toolId].tier = parseInt(btn.dataset.tier);
+      selectedTools[toolId].selected = true;
+      renderToolsGrid();
+      updateSelectedSummary();
+      calculateTotals();
+    });
+  });
+
+  grid.querySelectorAll('.tool-card-users input').forEach(input => {
+    input.addEventListener('click', (e) => e.stopPropagation());
+    input.addEventListener('change', (e) => {
+      const toolId = input.dataset.tool;
+      selectedTools[toolId].users = parseInt(input.value) || 1;
+      renderToolsGrid();
+      updateSelectedSummary();
+      calculateTotals();
+    });
+  });
+}
+
+function updateSelectedSummary() {
+  const summary = document.getElementById('selectedSummary');
+  const selected = Object.entries(selectedTools).filter(([_, t]) => t.selected);
+
+  if (selected.length === 0) {
+    summary.innerHTML = '<span class="selected-placeholder">No tools selected yet</span>';
+    return;
+  }
+
+  summary.innerHTML = selected.map(([id, tool]) => {
+    const cost = tool.tiers[tool.tier - 1] * tool.users;
+    return `
+      <div class="selected-chip">
+        ${tool.name} ($${cost})
+        <span class="selected-chip-remove" data-tool="${id}">×</span>
+      </div>
+    `;
+  }).join('');
+
+  summary.querySelectorAll('.selected-chip-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedTools[btn.dataset.tool].selected = false;
+      renderToolsGrid();
+      updateSelectedSummary();
+      calculateTotals();
+    });
+  });
+}
+
+function initializeWasteGrid() {
+  const grid = document.getElementById('wasteGrid');
 
   wasteCategories.forEach(waste => {
     if (!wasteInputs[waste.id]) {
-      wasteInputs[waste.id] = {
-        hours: waste.defaultHours,
-        rate: waste.defaultRate
-      };
+      wasteInputs[waste.id] = { hours: waste.defaultHours, rate: waste.defaultRate };
     }
-
-    const cost = wasteInputs[waste.id].hours * wasteInputs[waste.id].rate * 4; // Monthly
+    const cost = wasteInputs[waste.id].hours * wasteInputs[waste.id].rate * 4;
 
     const item = document.createElement('div');
     item.className = 'waste-item';
     item.innerHTML = `
       <div class="waste-header">
-        <div>
-          <div class="waste-title">${waste.name}</div>
-          <div class="waste-description">${waste.description}</div>
-        </div>
-        <div class="waste-cost" id="waste-cost-${waste.id}">$${formatNumber(cost)}/mo</div>
+        <span class="waste-title">${waste.name}</span>
+        <span class="waste-cost" id="waste-cost-${waste.id}">$${formatNumber(cost)}/mo</span>
       </div>
       <div class="waste-inputs">
-        <div class="input-group">
-          <label class="input-label">Hours per week (team-wide)</label>
-          <div class="slider-wrapper">
-            <input type="range" class="slider" min="0" max="80" value="${wasteInputs[waste.id].hours}"
-                   data-waste="${waste.id}" data-type="hours">
-            <div class="slider-value" id="waste-hours-${waste.id}">${wasteInputs[waste.id].hours}h</div>
-          </div>
+        <div class="input-row">
+          <span class="input-label">Hours/wk</span>
+          <input type="range" class="slider" min="0" max="40" value="${wasteInputs[waste.id].hours}" data-waste="${waste.id}" data-type="hours">
+          <div class="slider-value" id="waste-hours-${waste.id}">${wasteInputs[waste.id].hours}h</div>
         </div>
-        <div class="input-group">
-          <label class="input-label">Hourly labor rate ($)</label>
-          <div class="slider-wrapper">
-            <input type="range" class="slider" min="20" max="150" value="${wasteInputs[waste.id].rate}"
-                   data-waste="${waste.id}" data-type="rate">
-            <div class="slider-value" id="waste-rate-${waste.id}">$${wasteInputs[waste.id].rate}</div>
-          </div>
+        <div class="input-row">
+          <span class="input-label">Rate/hr</span>
+          <input type="range" class="slider" min="20" max="150" value="${wasteInputs[waste.id].rate}" data-waste="${waste.id}" data-type="rate">
+          <div class="slider-value" id="waste-rate-${waste.id}">$${wasteInputs[waste.id].rate}</div>
         </div>
       </div>
     `;
-    container.appendChild(item);
+    grid.appendChild(item);
   });
 
-  // Add event listeners
-  document.querySelectorAll('#wasteCategories .slider').forEach(slider => {
-    slider.addEventListener('input', (e) => {
+  grid.querySelectorAll('.slider').forEach(slider => {
+    slider.addEventListener('input', () => {
       const wasteId = slider.dataset.waste;
       const type = slider.dataset.type;
       wasteInputs[wasteId][type] = parseInt(slider.value);
 
-      // Update display
       if (type === 'hours') {
         document.getElementById(`waste-hours-${wasteId}`).textContent = slider.value + 'h';
       } else {
         document.getElementById(`waste-rate-${wasteId}`).textContent = '$' + slider.value;
       }
 
-      // Update cost
       const cost = wasteInputs[wasteId].hours * wasteInputs[wasteId].rate * 4;
       document.getElementById(`waste-cost-${wasteId}`).textContent = '$' + formatNumber(cost) + '/mo';
+      calculateTotals();
+    });
+  });
+}
+
+function initializeAIGrid() {
+  const grid = document.getElementById('aiGrid');
+
+  aiAgents.forEach(agent => {
+    if (selectedAIAgents[agent.id] === undefined) {
+      selectedAIAgents[agent.id] = true;
+    }
+
+    const isActive = selectedAIAgents[agent.id];
+    const savings = (agent.prevHours - agent.newHours) * agent.rate * 4;
+
+    const item = document.createElement('div');
+    item.className = 'ai-item';
+    item.innerHTML = `
+      <div class="ai-toggle ${isActive ? 'active' : ''}" data-agent="${agent.id}"></div>
+      <div class="ai-info">
+        <div class="ai-name">${agent.name}</div>
+        <div class="ai-savings">${isActive ? '$' + formatNumber(savings) + '/mo' : 'Disabled'}</div>
+      </div>
+    `;
+    grid.appendChild(item);
+  });
+
+  grid.querySelectorAll('.ai-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const agentId = toggle.dataset.agent;
+      selectedAIAgents[agentId] = !selectedAIAgents[agentId];
+      toggle.classList.toggle('active');
+
+      const agent = aiAgents.find(a => a.id === agentId);
+      const savings = (agent.prevHours - agent.newHours) * agent.rate * 4;
+      const savingsEl = toggle.nextElementSibling.querySelector('.ai-savings');
+      savingsEl.textContent = selectedAIAgents[agentId] ? '$' + formatNumber(savings) + '/mo' : 'Disabled';
 
       calculateTotals();
     });
   });
 }
 
-function initializeAIAgents() {
-  const container = document.getElementById('aiAgents');
-  container.innerHTML = '';
-
-  aiAgents.forEach(agent => {
-    if (selectedAIAgents[agent.id] === undefined) {
-      selectedAIAgents[agent.id] = true; // Default all ON
-    }
-
-    const isActive = selectedAIAgents[agent.id];
-    const weeklySavings = (agent.prevHours - agent.newHours) * agent.rate;
-    const monthlySavings = weeklySavings * 4;
-
-    const item = document.createElement('div');
-    item.className = 'ai-agent-item';
-    item.innerHTML = `
-      <div class="ai-toggle ${isActive ? 'active' : ''}" data-agent="${agent.id}"></div>
-      <div class="ai-info">
-        <h4>${agent.name}</h4>
-        <p>${agent.description}</p>
-      </div>
-      <div class="ai-savings">
-        <div class="ai-savings-amount">${isActive ? '$' + formatNumber(monthlySavings) : '-'}</div>
-        <div class="ai-savings-label">${isActive ? 'monthly opportunity' : 'disabled'}</div>
-      </div>
-    `;
-    container.appendChild(item);
+function initializeNavigation() {
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    if (currentStep > 1) goToStep(currentStep - 1);
   });
 
-  // Add event listeners
-  document.querySelectorAll('.ai-toggle').forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const agentId = toggle.dataset.agent;
-      selectedAIAgents[agentId] = !selectedAIAgents[agentId];
-      initializeAIAgents();
-      calculateTotals();
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (currentStep < 5) {
+      goToStep(currentStep + 1);
+    } else {
+      goToStep(1);
+    }
+  });
+
+  document.querySelectorAll('.step-indicator').forEach(indicator => {
+    indicator.addEventListener('click', () => {
+      goToStep(parseInt(indicator.dataset.step));
     });
   });
+}
+
+function goToStep(step) {
+  currentStep = step;
+
+  document.querySelectorAll('.step-indicator').forEach(indicator => {
+    const s = parseInt(indicator.dataset.step);
+    indicator.classList.remove('active', 'completed');
+    if (s === currentStep) indicator.classList.add('active');
+    else if (s < currentStep) indicator.classList.add('completed');
+  });
+
+  document.querySelectorAll('.step-content').forEach(content => {
+    content.classList.remove('active');
+  });
+  document.getElementById(`step${currentStep}`).classList.add('active');
+
+  document.getElementById('prevBtn').disabled = currentStep === 1;
+  document.getElementById('nextBtn').textContent = currentStep === 5 ? 'Start Over' : 'Next Step';
+
+  if (currentStep === 4) updateResultsPage();
+  if (currentStep === 5) updateCTAPage();
+
+  lastSentHeight = 0;
+  setTimeout(updateHeight, 50);
+  window.parent.postMessage({ type: 'scrollToTop' }, '*');
+}
+
+function calculateTotals() {
+  let toolsCost = 0;
+  Object.values(selectedTools).forEach(tool => {
+    if (tool.selected) {
+      toolsCost += tool.tiers[tool.tier - 1] * tool.users;
+    }
+  });
+
+  let wasteCost = 0;
+  Object.values(wasteInputs).forEach(waste => {
+    wasteCost += waste.hours * waste.rate * 4;
+  });
+
+  let aiCost = 0;
+  aiAgents.forEach(agent => {
+    if (selectedAIAgents[agent.id]) {
+      aiCost += (agent.prevHours - agent.newHours) * agent.rate * 4;
+    }
+  });
+
+  const totalWaste = toolsCost + wasteCost;
+
+  document.getElementById('runningToolsCost').textContent = '$' + formatNumber(toolsCost);
+  document.getElementById('runningWasteCost').textContent = '$' + formatNumber(wasteCost);
+  document.getElementById('runningAICost').textContent = '$' + formatNumber(aiCost);
+  document.getElementById('runningTotalWaste').textContent = '$' + formatNumber(totalWaste);
+
+  return { toolsCost, wasteCost, aiCost, totalWaste };
 }
 
 function updateResultsPage() {
   const { toolsCost, wasteCost, aiCost, totalWaste } = calculateTotals();
-  const yearlyWaste = totalWaste * 12;
-
-  // Update results hero
-  document.getElementById('resultsYearlyWaste').textContent = '$' + formatNumber(yearlyWaste);
-
-  // Update results cards
+  document.getElementById('resultsYearlyWaste').textContent = '$' + formatNumber(totalWaste * 12);
   document.getElementById('resultsToolsCost').textContent = '$' + formatNumber(toolsCost) + '/mo';
   document.getElementById('resultsWasteCost').textContent = '$' + formatNumber(wasteCost) + '/mo';
   document.getElementById('resultsAISavings').textContent = '+$' + formatNumber(aiCost) + '/mo';
-
-  // Draw results chart
   drawResultsChart(totalWaste);
 }
 
 function updateCTAPage() {
-  const { toolsCost, wasteCost, aiCost, totalWaste } = calculateTotals();
-  const yearlyWaste = totalWaste * 12;
-
-  // Update CTA stats
+  const { totalWaste } = calculateTotals();
   document.getElementById('ctaMonthlyWaste').textContent = '$' + formatNumber(totalWaste);
-  document.getElementById('ctaYearlyWaste').textContent = '$' + formatNumber(yearlyWaste);
+  document.getElementById('ctaYearlyWaste').textContent = '$' + formatNumber(totalWaste * 12);
   document.getElementById('ctaUrgencyAmount').textContent = '$' + formatNumber(totalWaste);
 }
 
@@ -1743,223 +1398,98 @@ function drawResultsChart(monthlyWaste) {
 
   const ctx = canvas.getContext('2d');
   const rect = canvas.parentElement.getBoundingClientRect();
-  canvas.width = rect.width - 48;
-  canvas.height = 280;
+  canvas.width = rect.width - 24;
+  canvas.height = 140;
 
   const width = canvas.width;
   const height = canvas.height;
-  const padding = { top: 40, right: 40, bottom: 40, left: 70 };
+  const padding = { top: 25, right: 30, bottom: 25, left: 50 };
   const chartWidth = width - padding.left - padding.right;
   const chartHeight = height - padding.top - padding.bottom;
-
-  // Generate 12-month data
-  const data = [];
-  for (let month = 0; month <= 12; month++) {
-    data.push({ month, value: monthlyWaste * month });
-  }
 
   const maxValue = monthlyWaste * 12;
   const yScale = chartHeight / maxValue;
   const xScale = chartWidth / 12;
 
-  // Clear canvas
   ctx.clearRect(0, 0, width, height);
 
-  // Draw grid
+  // Grid
   ctx.strokeStyle = 'rgba(255,255,255,0.1)';
   ctx.lineWidth = 1;
-
-  for (let i = 0; i <= 4; i++) {
-    const y = padding.top + (chartHeight / 4) * i;
+  for (let i = 0; i <= 3; i++) {
+    const y = padding.top + (chartHeight / 3) * i;
     ctx.beginPath();
     ctx.moveTo(padding.left, y);
     ctx.lineTo(width - padding.right, y);
     ctx.stroke();
 
     ctx.fillStyle = 'rgba(255,255,255,0.5)';
-    ctx.font = '11px Inter';
+    ctx.font = '10px Inter';
     ctx.textAlign = 'right';
-    const value = maxValue - (maxValue / 4) * i;
-    ctx.fillText('$' + formatNumber(value), padding.left - 10, y + 4);
+    const value = maxValue - (maxValue / 3) * i;
+    ctx.fillText('$' + formatNumber(value), padding.left - 8, y + 3);
   }
 
-  // X-axis labels
+  // X labels
   ctx.textAlign = 'center';
-  for (let month = 0; month <= 12; month += 3) {
-    const x = padding.left + month * xScale;
-    ctx.fillText('M' + month, x, height - 15);
+  for (let m = 0; m <= 12; m += 4) {
+    ctx.fillText('M' + m, padding.left + m * xScale, height - 8);
   }
 
-  // Draw area fill
+  // Area
   ctx.beginPath();
   ctx.moveTo(padding.left, padding.top + chartHeight);
-  data.forEach((point) => {
-    const x = padding.left + point.month * xScale;
-    const y = padding.top + chartHeight - (point.value * yScale);
+  for (let m = 0; m <= 12; m++) {
+    const x = padding.left + m * xScale;
+    const y = padding.top + chartHeight - (monthlyWaste * m * yScale);
     ctx.lineTo(x, y);
-  });
+  }
   ctx.lineTo(padding.left + 12 * xScale, padding.top + chartHeight);
   ctx.closePath();
   ctx.fillStyle = 'rgba(255, 107, 107, 0.2)';
   ctx.fill();
 
-  // Draw line
+  // Line
   ctx.beginPath();
   ctx.strokeStyle = '#ff6b6b';
-  ctx.lineWidth = 3;
-  data.forEach((point, i) => {
-    const x = padding.left + point.month * xScale;
-    const y = padding.top + chartHeight - (point.value * yScale);
-    if (i === 0) ctx.moveTo(x, y);
+  ctx.lineWidth = 2;
+  for (let m = 0; m <= 12; m++) {
+    const x = padding.left + m * xScale;
+    const y = padding.top + chartHeight - (monthlyWaste * m * yScale);
+    if (m === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
-  });
+  }
   ctx.stroke();
 
   // End point
   const endX = padding.left + 12 * xScale;
   const endY = padding.top + chartHeight - (maxValue * yScale);
   ctx.beginPath();
-  ctx.arc(endX, endY, 6, 0, Math.PI * 2);
+  ctx.arc(endX, endY, 4, 0, Math.PI * 2);
   ctx.fillStyle = '#ff6b6b';
   ctx.fill();
 
-  // Label
   ctx.fillStyle = '#ff6b6b';
-  ctx.font = 'bold 12px Inter';
-  ctx.textAlign = 'center';
-  ctx.fillText('$' + formatNumber(maxValue), endX, endY - 15);
+  ctx.font = 'bold 10px Inter';
+  ctx.fillText('$' + formatNumber(maxValue), endX, endY - 10);
 }
-
-function initializeNavigation() {
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-
-  prevBtn.addEventListener('click', () => {
-    if (currentStep > 1) {
-      goToStep(currentStep - 1);
-    }
-  });
-
-  nextBtn.addEventListener('click', () => {
-    if (currentStep < 5) {
-      goToStep(currentStep + 1);
-    }
-  });
-
-  // Step indicators click
-  document.querySelectorAll('.step-indicator').forEach(indicator => {
-    indicator.addEventListener('click', () => {
-      const step = parseInt(indicator.dataset.step);
-      goToStep(step);
-    });
-  });
-}
-
-function goToStep(step) {
-  currentStep = step;
-
-  // Update step indicators
-  document.querySelectorAll('.step-indicator').forEach(indicator => {
-    const indicatorStep = parseInt(indicator.dataset.step);
-    indicator.classList.remove('active', 'completed');
-    if (indicatorStep === currentStep) {
-      indicator.classList.add('active');
-    } else if (indicatorStep < currentStep) {
-      indicator.classList.add('completed');
-    }
-  });
-
-  // Update step content
-  document.querySelectorAll('.step-content').forEach(content => {
-    content.classList.remove('active');
-  });
-  document.getElementById(`step${currentStep}`).classList.add('active');
-
-  // Update nav buttons
-  document.getElementById('prevBtn').disabled = currentStep === 1;
-  document.getElementById('nextBtn').textContent = currentStep === 5 ? 'Start Over' : 'Next Step';
-
-  if (currentStep === 4) {
-    updateResultsPage();
-  }
-
-  if (currentStep === 5) {
-    updateCTAPage();
-    document.getElementById('nextBtn').textContent = 'Start Over';
-  }
-
-  // Update height for iframe - reset and recalculate after DOM updates
-  lastSentHeight = 0;
-  setTimeout(updateHeight, 50);
-
-  // Tell parent to scroll to top of iframe
-  window.parent.postMessage({ type: 'scrollToTop' }, '*');
-}
-
-// ============================================
-// CALCULATIONS
-// ============================================
-
-function calculateTotals() {
-  // Calculate SaaS tools cost
-  let toolsCost = 0;
-  Object.values(selectedTools).forEach(tool => {
-    if (tool.selected) {
-      toolsCost += tool.tiers[tool.tier - 1] * tool.users;
-    }
-  });
-
-  // Calculate inefficiency waste
-  let wasteCost = 0;
-  Object.values(wasteInputs).forEach(waste => {
-    wasteCost += waste.hours * waste.rate * 4; // Monthly
-  });
-
-  // Calculate AI enablement opportunity
-  let aiCost = 0;
-  aiAgents.forEach(agent => {
-    if (selectedAIAgents[agent.id]) {
-      const weeklySavings = (agent.prevHours - agent.newHours) * agent.rate;
-      aiCost += weeklySavings * 4;
-    }
-  });
-
-  const totalWaste = toolsCost + wasteCost; // Net Waste = SaaS + Inefficiency only
-
-  // Update running totals
-  document.getElementById('runningToolsCost').textContent = '$' + formatNumber(toolsCost);
-  document.getElementById('runningWasteCost').textContent = '$' + formatNumber(wasteCost);
-  document.getElementById('runningAICost').textContent = '$' + formatNumber(aiCost);
-  document.getElementById('runningTotalWaste').textContent = '$' + formatNumber(totalWaste);
-
-  return { toolsCost, wasteCost, aiCost, totalWaste };
-}
-
-
-// ============================================
-// UTILITIES
-// ============================================
 
 function formatNumber(num) {
   return Math.round(num).toLocaleString('en-US');
 }
 
-// Height communication for iframe
+// Height communication
 let lastSentHeight = 0;
 let heightUpdateTimeout = null;
 
 function updateHeight() {
   try {
     const container = document.querySelector('.calculator-container');
-    const height = container ? container.offsetHeight + 48 : document.body.scrollHeight;
-
+    const height = container ? container.offsetHeight + 32 : 700;
     if (Math.abs(height - lastSentHeight) < 10) return;
-
     lastSentHeight = height;
     window.parent.postMessage({ type: 'resize', height: height }, '*');
-  } catch (error) {
-    console.log('PostMessage not available:', error);
-  }
+  } catch (error) {}
 }
 
 function updateHeightDelayed() {
@@ -1967,14 +1497,12 @@ function updateHeightDelayed() {
   heightUpdateTimeout = setTimeout(updateHeight, 100);
 }
 
-// Send height immediately and after short delays to catch initial render
 updateHeight();
 setTimeout(updateHeight, 50);
 setTimeout(updateHeight, 200);
-setTimeout(updateHeight, 500);
 
 window.addEventListener('resize', updateHeightDelayed);
-window.addEventListener('load', function() {
+window.addEventListener('load', () => {
   updateHeight();
   setTimeout(updateHeight, 100);
 });
