@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APG ROI Calculator</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap">
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       scrollbar-width: none !important;
       -ms-overflow-style: none !important;
     }
@@ -92,6 +92,16 @@
     .step-indicator.completed {
       background: rgba(125, 255, 0, 0.1);
       color: #7DFF00;
+      cursor: pointer;
+    }
+
+    .step-indicator.locked {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .step-indicator.locked:hover {
+      background: rgba(255,255,255,0.05);
     }
 
     .step-number {
@@ -250,9 +260,41 @@
       border-color: rgba(255,255,255,0.2);
     }
 
-    .group-item.has-selections {
-      border-color: rgba(125, 255, 0, 0.5);
-      background: rgba(125, 255, 0, 0.05);
+    .group-item.selected {
+      border-color: #7DFF00;
+      background: rgba(125, 255, 0, 0.08);
+    }
+
+    .group-checkbox {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .group-item.selected .group-checkbox {
+      background: #7DFF00;
+      border-color: #7DFF00;
+    }
+
+    .group-checkbox svg {
+      width: 16px;
+      height: 16px;
+      stroke: #0a0a0a;
+      stroke-width: 3;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .group-item.selected .group-checkbox svg {
+      opacity: 1;
     }
 
     .group-item-icon {
@@ -278,17 +320,6 @@
       line-height: 1.3;
     }
 
-    .group-item-badge {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: #7DFF00;
-      color: #0a0a0a;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 10px;
-    }
 
     /* Category Selection Grid (Phase 1) */
     .category-checkbox-grid {
@@ -547,6 +578,32 @@
       color: rgba(255,255,255,0.5);
       margin-bottom: 12px;
       padding: 0 4px;
+    }
+
+    .scroll-hint {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      color: #7DFF00;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .scroll-hint svg {
+      animation: bounceArrow 2s infinite;
+    }
+
+    @keyframes bounceArrow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
+    }
+
+    @media (max-width: 768px) {
+      .scroll-hint {
+        display: flex;
+      }
     }
 
     .tier-select {
@@ -1018,6 +1075,7 @@
       justify-content: space-between;
       gap: 16px;
       margin-top: 24px;
+      margin-bottom: 20px;
     }
 
     .nav-btn {
@@ -1432,6 +1490,7 @@
 
       .nav-buttons {
         margin-top: 16px;
+        margin-bottom: 16px;
       }
 
       .nav-btn {
@@ -1737,40 +1796,38 @@
 
   <!-- Step 1: SaaS Tools -->
   <div class="step-content active" id="step1">
-    <!-- Phase 0: Group Selection -->
+    <!-- Phase 1: Group Selection (checkboxes) -->
     <div class="panel" id="groupSelectionPhase">
       <div class="panel-header">
         <div>
           <h2 class="panel-title">What areas does your team work in?</h2>
-          <p class="panel-subtitle">Tap a category to select your tools</p>
+          <p class="panel-subtitle">Select all that apply</p>
         </div>
       </div>
       <div id="groupGrid" class="group-grid"></div>
       <div class="category-selection-footer">
         <button class="continue-btn" id="continueFromGroupsBtn" disabled>
-          Continue <span id="selectedCategoryCount">(0 selected)</span>
+          Continue <span id="selectedGroupCount">(0 selected)</span>
         </button>
       </div>
     </div>
 
-    <!-- Phase 1: Category Selection within Group -->
+    <!-- Phase 2: Category Selection (sequential per group) -->
     <div class="panel" id="categorySelectionPhase" style="display: none;">
       <div class="panel-header">
         <div>
           <h2 class="panel-title" id="groupTitle">Sales & Marketing</h2>
-          <p class="panel-subtitle">Select the tools your team uses</p>
+          <p class="panel-subtitle" id="groupProgress">Group 1 of 2 — Select the categories you use</p>
         </div>
-        <button class="back-to-categories-btn" onclick="backToGroupsPhase()">← Back to Groups</button>
       </div>
       <div id="categoryCheckboxGrid" class="category-checkbox-grid"></div>
-      <div class="category-selection-footer">
-        <button class="continue-btn" id="continueToToolsBtn">
-          Done with this group
-        </button>
+      <div class="category-nav-buttons">
+        <button class="category-nav-btn prev" id="prevGroupBtn">← Back</button>
+        <button class="category-nav-btn next" id="nextGroupBtn">Next →</button>
       </div>
     </div>
 
-    <!-- Phase 2: Sequential Tool Selection -->
+    <!-- Phase 3: Tool Selection (sequential per category) -->
     <div class="panel" id="toolSelectionPhase" style="display: none;">
       <div class="panel-header">
         <div>
@@ -1779,10 +1836,17 @@
         </div>
         <button class="back-to-categories-btn" id="backToCategoriesBtn">← Change Categories</button>
       </div>
+      <p class="tools-helper-text">Select tools & pick your plan (T1=Basic, T2=Pro, T3=Enterprise)</p>
       <div id="singleCategoryTools" class="tools-scroll-container"></div>
+      <div class="scroll-hint" id="scrollHint">
+        <span>Scroll for more tools</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </div>
       <div class="category-nav-buttons">
-        <button class="category-nav-btn prev" id="prevCategoryBtn" disabled>← Previous Category</button>
-        <button class="category-nav-btn next" id="nextCategoryBtn">Next Category →</button>
+        <button class="category-nav-btn prev" id="prevCategoryBtn" disabled>← Previous</button>
+        <button class="category-nav-btn next" id="nextCategoryBtn">Next →</button>
       </div>
     </div>
   </div>
@@ -2227,17 +2291,20 @@ const categoryGroups = [
 // ============================================
 
 let currentStep = 1;
+let highestStepReached = 1;
 let selectedTools = {};
 let wasteInputs = {};
 let selectedAIAgents = {};
 let expandedCategories = new Set();
 
-// Category selection state
-let checkedCategories = new Set();
-let categorySequence = [];
-let currentCategoryIndex = 0;
+// Group & Category selection state
+let selectedGroups = new Set(); // Which groups are selected
+let selectedGroupSequence = []; // Array of selected group indices for navigation
+let currentGroupIndex = 0; // Current group in category selection phase
+let checkedCategories = new Set(); // Which categories are selected
+let categorySequence = []; // Array of selected categories for tool selection
+let currentCategoryIndex = 0; // Current category in tool selection phase
 let toolSelectionPhase = 'groups'; // 'groups', 'categories', or 'tools'
-let currentGroupIndex = null; // Which group is currently expanded
 
 // Waste navigation state
 let currentWasteIndex = 0;
@@ -2260,19 +2327,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialize group and category selection
 function initializeCategorySelection() {
-  // Initialize group grid
+  // Initialize group grid (checkboxes)
   initializeGroupGrid();
 
-  // Continue from groups button
-  document.getElementById('continueFromGroupsBtn').addEventListener('click', startToolsPhase);
+  // Continue from groups button - starts sequential category selection
+  document.getElementById('continueFromGroupsBtn').addEventListener('click', startCategoryPhase);
 
-  // Continue from categories (back to groups)
-  document.getElementById('continueToToolsBtn').addEventListener('click', backToGroupsPhase);
+  // Group navigation buttons (in category selection phase)
+  document.getElementById('prevGroupBtn').addEventListener('click', () => navigateGroup(-1));
+  document.getElementById('nextGroupBtn').addEventListener('click', () => navigateGroup(1));
 
   // Back to categories button (in tools phase)
   document.getElementById('backToCategoriesBtn').addEventListener('click', backToCategoriesPhase);
 
-  // Category navigation buttons
+  // Category/Tool navigation buttons
   document.getElementById('prevCategoryBtn').addEventListener('click', () => navigateCategory(-1));
   document.getElementById('nextCategoryBtn').addEventListener('click', () => navigateCategory(1));
 }
@@ -2283,36 +2351,114 @@ function initializeGroupGrid() {
 
   categoryGroups.forEach((group, index) => {
     const item = document.createElement('div');
-    item.className = 'group-item';
+    item.className = 'group-item' + (selectedGroups.has(index) ? ' selected' : '');
     item.dataset.groupIndex = index;
 
     item.innerHTML = `
+      <div class="group-checkbox">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
       <div class="group-item-icon">${group.icon}</div>
       <div class="group-item-name">${group.name}</div>
-      <div class="group-item-badge" style="display: none;">0</div>
     `;
 
-    item.addEventListener('click', () => openGroup(index));
+    item.addEventListener('click', () => toggleGroupSelection(index, item));
     container.appendChild(item);
   });
 
-  updateGroupBadges();
+  updateGroupCount();
 }
 
-function openGroup(groupIndex) {
-  currentGroupIndex = groupIndex;
-  const group = categoryGroups[groupIndex];
+function toggleGroupSelection(index, element) {
+  if (selectedGroups.has(index)) {
+    selectedGroups.delete(index);
+    element.classList.remove('selected');
+  } else {
+    selectedGroups.add(index);
+    element.classList.add('selected');
+  }
+  updateGroupCount();
+}
+
+function updateGroupCount() {
+  const count = selectedGroups.size;
+  const btn = document.getElementById('continueFromGroupsBtn');
+  const countSpan = document.getElementById('selectedGroupCount');
+
+  btn.disabled = count === 0;
+  countSpan.textContent = count === 0 ? '(0 selected)' : count === 1 ? '(1 selected)' : `(${count} selected)`;
+}
+
+// Start sequential category selection through all selected groups
+function startCategoryPhase() {
+  if (selectedGroups.size === 0) return;
+
+  // Create sequence from selected groups
+  selectedGroupSequence = Array.from(selectedGroups).sort((a, b) => a - b);
+  currentGroupIndex = 0;
   toolSelectionPhase = 'categories';
-
-  // Update title
-  document.getElementById('groupTitle').textContent = group.name;
-
-  // Render categories for this group
-  renderGroupCategories(group);
 
   // Switch phases
   document.getElementById('groupSelectionPhase').style.display = 'none';
   document.getElementById('categorySelectionPhase').style.display = 'block';
+
+  renderCurrentGroup();
+  updateHeight();
+}
+
+function renderCurrentGroup() {
+  const groupIdx = selectedGroupSequence[currentGroupIndex];
+  const group = categoryGroups[groupIdx];
+  const total = selectedGroupSequence.length;
+
+  // Update title and progress
+  document.getElementById('groupTitle').textContent = group.name;
+  document.getElementById('groupProgress').textContent = `Group ${currentGroupIndex + 1} of ${total} — Select the categories you use`;
+
+  // Render categories for this group
+  renderGroupCategories(group);
+
+  // Update nav buttons
+  const prevBtn = document.getElementById('prevGroupBtn');
+  const nextBtn = document.getElementById('nextGroupBtn');
+
+  prevBtn.disabled = false;
+  prevBtn.textContent = currentGroupIndex === 0 ? '← Back to Groups' : '← Previous Group';
+
+  if (currentGroupIndex === total - 1) {
+    nextBtn.textContent = 'Continue to Tools →';
+  } else {
+    nextBtn.textContent = 'Next Group →';
+  }
+}
+
+function navigateGroup(direction) {
+  const total = selectedGroupSequence.length;
+  const newIndex = currentGroupIndex + direction;
+
+  if (newIndex < 0) {
+    // Go back to group selection
+    backToGroupsFromCategories();
+    return;
+  }
+
+  if (newIndex >= total) {
+    // Done with all groups, start tools phase
+    startToolsPhase();
+    return;
+  }
+
+  currentGroupIndex = newIndex;
+  renderCurrentGroup();
+  updateHeight();
+}
+
+function backToGroupsFromCategories() {
+  toolSelectionPhase = 'groups';
+  document.getElementById('categorySelectionPhase').style.display = 'none';
+  document.getElementById('groupSelectionPhase').style.display = 'block';
   updateHeight();
 }
 
@@ -2345,34 +2491,6 @@ function renderGroupCategories(group) {
   });
 }
 
-function backToGroupsPhase() {
-  toolSelectionPhase = 'groups';
-  currentGroupIndex = null;
-  document.getElementById('categorySelectionPhase').style.display = 'none';
-  document.getElementById('groupSelectionPhase').style.display = 'block';
-  updateGroupBadges();
-  updateCategoryCount();
-  updateHeight();
-}
-
-function updateGroupBadges() {
-  const groupItems = document.querySelectorAll('.group-item');
-  groupItems.forEach((item, index) => {
-    const group = categoryGroups[index];
-    const selectedInGroup = group.categories.filter(cat => checkedCategories.has(cat)).length;
-    const badge = item.querySelector('.group-item-badge');
-
-    if (selectedInGroup > 0) {
-      badge.textContent = selectedInGroup;
-      badge.style.display = 'block';
-      item.classList.add('has-selections');
-    } else {
-      badge.style.display = 'none';
-      item.classList.remove('has-selections');
-    }
-  });
-}
-
 function toggleCategorySelection(category, element) {
   if (checkedCategories.has(category)) {
     checkedCategories.delete(category);
@@ -2381,20 +2499,15 @@ function toggleCategorySelection(category, element) {
     checkedCategories.add(category);
     element.classList.add('checked');
   }
-  updateCategoryCount();
-}
-
-function updateCategoryCount() {
-  const count = checkedCategories.size;
-  const btn = document.getElementById('continueFromGroupsBtn');
-  const countSpan = document.getElementById('selectedCategoryCount');
-
-  btn.disabled = count === 0;
-  countSpan.textContent = count === 0 ? '(0 selected)' : count === 1 ? '(1 selected)' : `(${count} selected)`;
 }
 
 function startToolsPhase() {
-  if (checkedCategories.size === 0) return;
+  if (checkedCategories.size === 0) {
+    // No categories selected - go back to first group to select some
+    currentGroupIndex = 0;
+    renderCurrentGroup();
+    return;
+  }
 
   // Create sequence from checked categories in order they appear in toolsData
   categorySequence = Object.keys(toolsData).filter(cat => checkedCategories.has(cat));
@@ -2411,14 +2524,13 @@ function startToolsPhase() {
 }
 
 function backToCategoriesPhase() {
-  // Go back to groups phase instead of flat categories
-  toolSelectionPhase = 'groups';
-  currentGroupIndex = null;
-  document.getElementById('groupSelectionPhase').style.display = 'block';
-  document.getElementById('categorySelectionPhase').style.display = 'none';
+  // Go back to category selection phase (last group)
+  toolSelectionPhase = 'categories';
+  currentGroupIndex = selectedGroupSequence.length - 1;
+  document.getElementById('groupSelectionPhase').style.display = 'none';
+  document.getElementById('categorySelectionPhase').style.display = 'block';
   document.getElementById('toolSelectionPhase').style.display = 'none';
-  updateGroupBadges();
-  updateCategoryCount();
+  renderCurrentGroup();
   updateHeight();
 }
 
@@ -2449,7 +2561,6 @@ function renderSingleCategoryTools(category, data) {
   const categoryId = category.replace(/\s+/g, '-').toLowerCase();
 
   container.innerHTML = `
-    <p class="tools-helper-text">Select tools & pick your plan (T1=Basic, T2=Pro, T3=Enterprise)</p>
     <div class="category-tools-list">
       ${data.tools.map(tool => {
         const toolId = `${categoryId}-${tool.name.replace(/\s+/g, '-').toLowerCase()}`;
@@ -2540,7 +2651,11 @@ function toggleTool(toolId) {
 function navigateCategory(direction) {
   const newIndex = currentCategoryIndex + direction;
 
-  if (newIndex < 0) return;
+  if (newIndex < 0) {
+    // Go back to category selection phase
+    backToCategoriesPhase();
+    return;
+  }
 
   if (newIndex >= categorySequence.length) {
     // Finished all categories - go to step 2
@@ -2936,7 +3051,7 @@ function drawResultsChart(monthlyWaste) {
     ctx.stroke();
 
     ctx.fillStyle = 'rgba(255,255,255,0.5)';
-    ctx.font = '11px Inter';
+    ctx.font = '11px DM Sans';
     ctx.textAlign = 'right';
     const value = maxValue - (maxValue / 4) * i;
     ctx.fillText('$' + formatNumber(value), padding.left - 10, y + 4);
@@ -2984,7 +3099,7 @@ function drawResultsChart(monthlyWaste) {
 
   // Label
   ctx.fillStyle = '#ff6b6b';
-  ctx.font = 'bold 12px Inter';
+  ctx.font = 'bold 12px DM Sans';
   ctx.textAlign = 'center';
   ctx.fillText('$' + formatNumber(maxValue), endX, endY - 15);
 }
@@ -3042,7 +3157,10 @@ function initializeNavigation() {
   document.querySelectorAll('.step-indicator').forEach(indicator => {
     indicator.addEventListener('click', () => {
       const step = parseInt(indicator.dataset.step);
-      goToStep(step);
+      // Only allow navigation to completed steps or current step
+      if (step <= highestStepReached) {
+        goToStep(step);
+      }
     });
   });
 }
@@ -3050,11 +3168,15 @@ function initializeNavigation() {
 function resetCalculator() {
   // Reset all state
   currentStep = 1;
+  highestStepReached = 1;
   selectedTools = {};
+  selectedGroups = new Set();
+  selectedGroupSequence = [];
+  currentGroupIndex = 0;
   checkedCategories = new Set();
   categorySequence = [];
   currentCategoryIndex = 0;
-  toolSelectionPhase = 'categories';
+  toolSelectionPhase = 'groups';
   currentWasteIndex = 0;
 
   // Reset waste inputs
@@ -3078,10 +3200,6 @@ function resetCalculator() {
   document.getElementById('categorySelectionPhase').style.display = 'none';
   document.getElementById('toolSelectionPhase').style.display = 'none';
 
-  // Reset UI
-  updateGroupBadges();
-  updateCategoryCount();
-
   // Hide bottom nav (Step 1 has its own navigation)
   document.querySelector('.nav-buttons').style.display = 'none';
 
@@ -3092,14 +3210,21 @@ function resetCalculator() {
 function goToStep(step) {
   currentStep = step;
 
+  // Track highest step reached
+  if (step > highestStepReached) {
+    highestStepReached = step;
+  }
+
   // Update step indicators
   document.querySelectorAll('.step-indicator').forEach(indicator => {
     const indicatorStep = parseInt(indicator.dataset.step);
-    indicator.classList.remove('active', 'completed');
+    indicator.classList.remove('active', 'completed', 'locked');
     if (indicatorStep === currentStep) {
       indicator.classList.add('active');
-    } else if (indicatorStep < currentStep) {
+    } else if (indicatorStep <= highestStepReached) {
       indicator.classList.add('completed');
+    } else {
+      indicator.classList.add('locked');
     }
   });
 
@@ -3117,12 +3242,18 @@ function goToStep(step) {
       document.getElementById('categorySelectionPhase').style.display = 'none';
       document.getElementById('toolSelectionPhase').style.display = 'block';
       renderCurrentCategory();
+    } else if (toolSelectionPhase === 'categories' && selectedGroupSequence.length > 0) {
+      // Return to category selection phase
+      document.getElementById('groupSelectionPhase').style.display = 'none';
+      document.getElementById('categorySelectionPhase').style.display = 'block';
+      document.getElementById('toolSelectionPhase').style.display = 'none';
+      renderCurrentGroup();
     } else {
       // Show group selection (initial state)
       document.getElementById('groupSelectionPhase').style.display = 'block';
       document.getElementById('categorySelectionPhase').style.display = 'none';
       document.getElementById('toolSelectionPhase').style.display = 'none';
-      updateGroupBadges();
+      initializeGroupGrid();
     }
   }
 
